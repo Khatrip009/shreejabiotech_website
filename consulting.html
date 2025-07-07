@@ -1,0 +1,1399 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   BioCNG Consultancy Services | Shreeja Bio-Tech
+  </title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;family=Montserrat:wght@700;800&amp;display=swap" rel="stylesheet"/>
+  <style>
+   :root {
+            --primary: #2e7d32;
+            --primary-light: #4caf50;
+            --secondary: #ff9800;
+            --accent: #2196f3;
+            --dark: #1b5e20;
+            --light: #e8f5e9;
+            --gradient-start: #1b5e20;
+            --gradient-end: #388e3c;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .header {
+            background-color: #ffffff;
+            padding: 1rem 2rem;
+            border-bottom: 4px solid #38a169; /* Green border */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 0 0 15px 15px;
+        }
+        .header img {
+            height: 60px; /* Adjust logo size */
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .consultancy-hero {
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%), 
+                        url('https://images.unsplash.com/photo-1586771107445-d3ca888129fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 120px 20px 100px;
+            text-align: center;
+            position: relative;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-content h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            animation: fadeInDown 1s ease;
+        }
+        
+        .hero-content p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            animation: fadeIn 1s ease 0.6s both;
+            box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3);
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(255, 152, 0, 0.4);
+            background: #ffa726;
+        }
+        
+        .section {
+            padding: 80px 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-header h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-header h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+        
+        .section-header p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 800px;
+            margin: 20px auto 0;
+        }
+        
+        .process-steps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin: 60px 0;
+        }
+        
+        .process-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            padding: 40px 30px;
+            width: 100%;
+            max-width: 360px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .process-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--primary);
+            z-index: 2;
+        }
+        
+        .process-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .step-number {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.5rem;
+            font-family: 'Montserrat', sans-serif;
+            z-index: 3;
+        }
+        
+        .process-icon {
+            font-size: 3.5rem;
+            color: var(--primary);
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .process-card:hover .process-icon {
+            transform: scale(1.1);
+            color: var(--secondary);
+        }
+        
+        .process-card h3 {
+            font-size: 1.5rem;
+            color: var(--dark);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .process-card ul {
+            list-style: none;
+            text-align: left;
+        }
+        
+        .process-card ul li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .process-card ul li:before {
+            content: '\f00c';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 10px;
+            color: var(--primary);
+        }
+        
+        .tech-showcase {
+            background: linear-gradient(to right, #f8f9fa, #e8f5e9);
+            padding: 80px 20px;
+            border-radius: 20px;
+            margin: 60px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .tech-showcase:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1613665813446-82a78c468a1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=60') center/cover;
+            opacity: 0.05;
+        }
+        
+        .tech-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 20px auto;
+            max-width: 900px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            position: relative;
+            z-index: 2;
+            backdrop-filter: blur(5px);
+        }
+        
+        .tech-card h3 {
+            font-size: 2rem;
+            color: var(--dark);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .tech-card p {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+        
+        .tech-diagram {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .tech-features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 40px;
+        }
+        
+        .feature {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 15px;
+            padding: 25px 20px;
+            width: 230px;
+            text-align: center;
+            transition: all 0.3s ease;
+            color: white;
+            box-shadow: 0 5px 15px rgba(46, 125, 50, 0.3);
+        }
+        
+        .feature:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(46, 125, 50, 0.4);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--secondary);
+        }
+        
+        .feature h4 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        .comparison-section {
+            background: url('https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=60') center/cover;
+            padding: 80px 20px;
+            position: relative;
+            color: white;
+        }
+        
+        .comparison-section:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(27, 94, 32, 0.9);
+        }
+        
+        .comparison-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 40px 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .comparison-table th, 
+        .comparison-table td {
+            padding: 18px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .comparison-table th {
+            background: rgba(255, 152, 0, 0.8);
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .comparison-table tr:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .case-study {
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            color: white;
+            padding: 60px 30px;
+            border-radius: 20px;
+            margin: 60px 0;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .case-study:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=60') center/cover;
+            opacity: 0.1;
+        }
+        
+        .case-study-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .benefits-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .benefit-card {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            padding: 30px;
+            flex: 1;
+            min-width: 300px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .benefit-card:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-10px);
+        }
+        
+        .benefit-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+        
+        .consultation-form {
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            max-width: 900px;
+            margin: 60px auto;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .consultation-form:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.2);
+        }
+        
+        .btn-submit {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            border: none;
+            padding: 16px 40px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            display: block;
+            width: 100%;
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(46, 125, 50, 0.4);
+        }
+        
+        .btn-submit:hover {
+            background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(46, 125, 50, 0.5);
+        }
+        
+        .why-choose {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            margin: 60px 0;
+        }
+        
+        .reason-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 30px;
+            width: 100%;
+            max-width: 350px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .reason-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .reason-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .reason-card:hover .reason-icon {
+            color: var(--secondary);
+            transform: scale(1.2);
+        }
+        
+        .reason-card h3 {
+            font-size: 1.5rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+        
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+            
+            .section {
+                padding: 60px 20px;
+            }
+            
+            .section-header h2 {
+                font-size: 2rem;
+            }
+            
+            .consultation-form {
+                padding: 30px;
+            }
+        }
+  </style>
+ </head>
+ <!-- Header -->
+  <header>
+ <div class="container header-container">
+   <div class="logo" style="display: flex; align-items: center; gap: 10px;">
+    <a href="index.html">
+      <img src="Shreeja_LOGO.png" alt="Shreeja Biotech Logo" style="height: 50px;">
+    </a>
+    <div class="logo-text">
+      <h1 style="margin: 0;">
+        SHREEJA <span style="color: #28a745;">BIO-TECH</span>
+      </h1>
+	<nav>
+            <a href="../index.html" class="btn-primary">Home</a>
+        </nav>
+    </div>
+      <div class="mobile-toggle" id="mobileToggle">
+     <i class="fas fa-bars">
+     </i>
+    </div>
+    
+   </div>
+  </header>
+ <body>
+  <header class="consultancy-hero">
+   <div class="hero-content">
+    <h1>
+     BioCNG Project Consultancy Services
+    </h1>
+    <p>
+     World-class expertise in commercial BioCNG project development from concept to commissioning
+    </p>
+    <a class="btn" href="#consultation">
+     Request Expert Consultation
+    </a>
+   </div>
+  </header>
+  <section class="section">
+   <div class="container">
+    <div class="section-header">
+     <h2>
+      Why Choose Shreeja Bio-Tech?
+     </h2>
+     <p>
+      With successful projects across India and Southeast Asia, we bring unparalleled expertise to your BioCNG venture
+     </p>
+    </div>
+    <div class="why-choose">
+     <div class="reason-card animate-on-scroll">
+      <div class="reason-icon">
+       <i class="fas fa-globe-asia">
+       </i>
+      </div>
+      <h3>
+       Global Expertise
+      </h3>
+      <p>
+       Proven track record with international projects in Malaysia, India, and beyond
+      </p>
+     </div>
+     <div class="reason-card animate-on-scroll">
+      <div class="reason-icon">
+       <i class="fas fa-lightbulb">
+       </i>
+      </div>
+      <h3>
+       Patented Technology
+      </h3>
+      <p>
+       Our semi-cryogenic purification system achieves 98% methane purity
+      </p>
+     </div>
+     <div class="reason-card animate-on-scroll">
+      <div class="reason-icon">
+       <i class="fas fa-hand-holding-usd">
+       </i>
+      </div>
+      <h3>
+       Financial Expertise
+      </h3>
+      <p>
+       Specialized in subsidy acquisition and bank financing solutions
+      </p>
+     </div>
+     <div class="reason-card animate-on-scroll">
+      <div class="reason-icon">
+       <i class="fas fa-leaf">
+       </i>
+      </div>
+      <h3>
+       Sustainable Solutions
+      </h3>
+      <p>
+       Carbon-negative operations with CO₂ commercialization
+      </p>
+     </div>
+    </div>
+    <div class="tech-showcase">
+     <div class="tech-card">
+      <h3>
+       Our Revolutionary Semi-Cryogenic Technology
+      </h3>
+      <p>
+       Patented biogas purification system achieving up to 98% methane purity
+      </p>
+      <div class="tech-diagram">
+       <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+        <div style="text-align: center; padding: 20px; background: #e8f5e9; border-radius: 10px;">
+         <i class="fas fa-wind" style="font-size: 2.5rem; color: var(--primary); margin-bottom: 15px;">
+         </i>
+         <h4 style="color: var(--dark);">
+          Raw Biogas
+         </h4>
+         <p>
+          60-65% CH₄
+         </p>
+        </div>
+        <i class="fas fa-arrow-right" style="font-size: 2rem; color: var(--secondary);">
+        </i>
+        <div style="text-align: center; padding: 20px; background: #e8f5e9; border-radius: 10px;">
+         <i class="fas fa-compress-arrows-alt" style="font-size: 2.5rem; color: var(--primary); margin-bottom: 15px;">
+         </i>
+         <h4 style="color: var(--dark);">
+          Multi-Stage Compression
+         </h4>
+         <p>
+          Pressure Optimization
+         </p>
+        </div>
+        <i class="fas fa-arrow-right" style="font-size: 2rem; color: var(--secondary);">
+        </i>
+        <div style="text-align: center; padding: 20px; background: #e8f5e9; border-radius: 10px;">
+         <i class="fas fa-snowflake" style="font-size: 2.5rem; color: var(--primary); margin-bottom: 15px;">
+         </i>
+         <h4 style="color: var(--dark);">
+          Precision Chilling
+         </h4>
+         <p>
+          -20°C Cooling
+         </p>
+        </div>
+        <i class="fas fa-arrow-right" style="font-size: 2rem; color: var(--secondary);">
+        </i>
+        <div style="text-align: center; padding: 20px; background: #e8f5e9; border-radius: 10px;">
+         <i class="fas fa-filter" style="font-size: 2.5rem; color: var(--primary); margin-bottom: 15px;">
+         </i>
+         <h4 style="color: var(--dark);">
+          Molecular Separation
+         </h4>
+         <p>
+          98% CH₄ Purity
+         </p>
+        </div>
+       </div>
+      </div>
+      <div class="tech-features">
+       <div class="feature">
+        <div class="feature-icon">
+         <i class="fas fa-bolt">
+         </i>
+        </div>
+        <h4>
+         Energy Efficient
+        </h4>
+        <p>
+         30% less energy than traditional methods
+        </p>
+       </div>
+       <div class="feature">
+        <div class="feature-icon">
+         <i class="fas fa-coins">
+         </i>
+        </div>
+        <h4>
+         Revenue Streams
+        </h4>
+        <p>
+         Food-grade CO₂ byproduct commercialization
+        </p>
+       </div>
+       <div class="feature">
+        <div class="feature-icon">
+         <i class="fas fa-chart-line">
+         </i>
+        </div>
+        <h4>
+         Higher Yield
+        </h4>
+        <p>
+         25% more gas output than conventional systems
+        </p>
+       </div>
+       <div class="feature">
+        <div class="feature-icon">
+         <i class="fas fa-leaf">
+         </i>
+        </div>
+        <h4>
+         Sustainable
+        </h4>
+        <p>
+         Reduces carbon footprint significantly
+        </p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section>
+  <section class="section" style="background: #f0f7f0;">
+   <div class="container">
+    <div class="section-header">
+     <h2>
+      Our Comprehensive Consultancy Process
+     </h2>
+     <p>
+      End-to-end guidance for successful BioCNG project implementation
+     </p>
+    </div>
+    <div class="process-steps">
+     <!-- Step 1 -->
+     <div class="process-card animate-on-scroll">
+      <div class="step-number">
+       1
+      </div>
+      <div class="process-icon">
+       <i class="fas fa-file-contract">
+       </i>
+      </div>
+      <h3>
+       Project Documentation &amp; Feasibility
+      </h3>
+      <ul>
+       <li>
+        Detailed project report (DPR) preparation
+       </li>
+       <li>
+        Technical and economic feasibility analysis
+       </li>
+       <li>
+        Feedstock assessment and availability studies
+       </li>
+       <li>
+        Initial financial modeling
+       </li>
+      </ul>
+     </div>
+     <!-- Step 2 -->
+     <div class="process-card animate-on-scroll">
+      <div class="step-number">
+       2
+      </div>
+      <div class="process-icon">
+       <i class="fas fa-map-marked-alt">
+       </i>
+      </div>
+      <h3>
+       Site Assessment &amp; Analysis
+      </h3>
+      <ul>
+       <li>
+        Comprehensive site visits
+       </li>
+       <li>
+        Topographical and soil testing
+       </li>
+       <li>
+        Environmental impact assessment
+       </li>
+       <li>
+        Infrastructure connectivity analysis
+       </li>
+      </ul>
+     </div>
+     <!-- Step 3 -->
+     <div class="process-card animate-on-scroll">
+      <div class="step-number">
+       3
+      </div>
+      <div class="process-icon">
+       <i class="fas fa-seedling">
+       </i>
+      </div>
+      <h3>
+       Feedstock Strategy Development
+      </h3>
+      <ul>
+       <li>
+        Optimal feedstock selection
+       </li>
+       <li>
+        Preparation techniques (Screwpress, etc.)
+       </li>
+       <li>
+        Storage and handling solutions
+       </li>
+       <li>
+        Napier Grass optimization strategies
+       </li>
+      </ul>
+     </div>
+     <!-- Step 4 -->
+     <div class="process-card animate-on-scroll">
+      <div class="step-number">
+       4
+      </div>
+      <div class="process-icon">
+       <i class="fas fa-cogs">
+       </i>
+      </div>
+      <h3>
+       Technology Selection
+      </h3>
+      <ul>
+       <li>
+        Digestion process (Modified UASB, CSTR)
+       </li>
+       <li>
+        Purification system design
+       </li>
+       <li>
+        Semi-cryogenic implementation planning
+       </li>
+       <li>
+        Automation and control systems
+       </li>
+      </ul>
+     </div>
+     <!-- Step 5 -->
+     <div class="process-card animate-on-scroll">
+      <div class="step-number">
+       5
+      </div>
+      <div class="process-icon">
+       <i class="fas fa-file-invoice-dollar">
+       </i>
+      </div>
+      <h3>
+       Financial Structuring
+      </h3>
+      <ul>
+       <li>
+        Bank finance documentation
+       </li>
+       <li>
+        MNRE/NABARD subsidy applications
+       </li>
+       <li>
+        ROI projections
+       </li>
+       <li>
+        Investor pitch preparation
+       </li>
+      </ul>
+     </div>
+     <!-- Step 6 -->
+     <div class="process-card animate-on-scroll">
+      <div class="step-number">
+       6
+      </div>
+      <div class="process-icon">
+       <i class="fas fa-drafting-compass">
+       </i>
+      </div>
+      <h3>
+       Design &amp; Engineering
+      </h3>
+      <ul>
+       <li>
+        Detailed plant layout
+       </li>
+       <li>
+        Civil and structural design
+       </li>
+       <li>
+        P&amp;ID development
+       </li>
+       <li>
+        3D plant modeling
+       </li>
+      </ul>
+     </div>
+     <!-- Step 7 -->
+     <div class="process-card animate-on-scroll">
+      <div class="step-number">
+       7
+      </div>
+      <div class="process-icon">
+       <i class="fas fa-hard-hat">
+       </i>
+      </div>
+      <h3>
+       Implementation Oversight
+      </h3>
+      <ul>
+       <li>
+        Vendor management
+       </li>
+       <li>
+        Construction supervision
+       </li>
+       <li>
+        Equipment installation guidance
+       </li>
+       <li>
+        Quality control protocols
+       </li>
+      </ul>
+     </div>
+     <!-- Step 8 -->
+     <div class="process-card animate-on-scroll">
+      <div class="step-number">
+       8
+      </div>
+      <div class="process-icon">
+       <i class="fas fa-tachometer-alt">
+       </i>
+      </div>
+      <h3>
+       Commissioning &amp; Optimization
+      </h3>
+      <ul>
+       <li>
+        System startup procedures
+       </li>
+       <li>
+        Performance testing
+       </li>
+       <li>
+        Process optimization
+       </li>
+       <li>
+        Staff training programs
+       </li>
+      </ul>
+     </div>
+     <!-- Step 9 -->
+     <div class="process-card animate-on-scroll">
+      <div class="step-number">
+       9
+      </div>
+      <div class="process-icon">
+       <i class="fas fa-hands-helping">
+       </i>
+      </div>
+      <h3>
+       Post-Commissioning Support
+      </h3>
+      <ul>
+       <li>
+        Operational troubleshooting
+       </li>
+       <li>
+        Maintenance planning
+       </li>
+       <li>
+        Carbon credit registration
+       </li>
+       <li>
+        Efficiency audits
+       </li>
+      </ul>
+     </div>
+    </div>
+   </div>
+  </section>
+  <section class="comparison-section">
+   <div class="container">
+    <div class="comparison-content">
+     <div class="section-header">
+      <h2 style="color: white;">
+       Technology Comparison
+      </h2>
+      <p style="color: rgba(255,255,255,0.9);">
+       Why our semi-cryogenic system outperforms traditional methods
+      </p>
+     </div>
+     <table class="comparison-table">
+      <thead>
+       <tr>
+        <th>
+         Parameter
+        </th>
+        <th>
+         Semi-Cryogenic (Shreeja)
+        </th>
+        <th>
+         Water Scrubbing
+        </th>
+        <th>
+         PSA
+        </th>
+        <th>
+         Membrane
+        </th>
+       </tr>
+      </thead>
+      <tbody>
+       <tr>
+        <td>
+         Methane Purity
+        </td>
+        <td>
+         96-98%
+        </td>
+        <td>
+         90-95%
+        </td>
+        <td>
+         95-97%
+        </td>
+        <td>
+         88-93%
+        </td>
+       </tr>
+       <tr>
+        <td>
+         Methane Recovery
+        </td>
+        <td>
+         99%
+        </td>
+        <td>
+         95-97%
+        </td>
+        <td>
+         96-98%
+        </td>
+        <td>
+         90-95%
+        </td>
+       </tr>
+       <tr>
+        <td>
+         Energy Consumption
+        </td>
+        <td>
+         0.25 kWh/Nm³
+        </td>
+        <td>
+         0.35 kWh/Nm³
+        </td>
+        <td>
+         0.30 kWh/Nm³
+        </td>
+        <td>
+         0.28 kWh/Nm³
+        </td>
+       </tr>
+       <tr>
+        <td>
+         OPEX
+        </td>
+        <td>
+         Low
+        </td>
+        <td>
+         High
+        </td>
+        <td>
+         Medium
+        </td>
+        <td>
+         Medium
+        </td>
+       </tr>
+       <tr>
+        <td>
+         Byproduct Value
+        </td>
+        <td>
+         Food-grade CO₂
+        </td>
+        <td>
+         Low-grade CO₂
+        </td>
+        <td>
+         Low-grade CO₂
+        </td>
+        <td>
+         Low-grade CO₂
+        </td>
+       </tr>
+       <tr>
+        <td>
+         Footprint
+        </td>
+        <td>
+         Compact
+        </td>
+        <td>
+         Large
+        </td>
+        <td>
+         Medium
+        </td>
+        <td>
+         Compact
+        </td>
+       </tr>
+      </tbody>
+     </table>
+    </div>
+   </div>
+  </section>
+  <section class="section">
+   <div class="container">
+    <div class="case-study">
+     <div class="case-study-content">
+      <div class="section-header">
+       <h2 style="color: white;">
+        International Success: Malaysia Project
+       </h2>
+       <p style="color: rgba(255,255,255,0.9);">
+        2.4 MWe Biogas Plant in Raub, Pahang, Malaysia
+       </p>
+      </div>
+      <div class="benefits-grid">
+       <div class="benefit-card">
+        <h3>
+         Project Overview
+        </h3>
+        <p>
+         Technical consultancy for Ajit Biofuel Sdn. Bhd. using CSTR-MBR technology with palm oil mill effluent
+        </p>
+        <p>
+         <strong>
+          Capacity:
+         </strong>
+         2.4 MWe |
+         <strong>
+          Value:
+         </strong>
+         ₹2.55 Crore
+        </p>
+       </div>
+       <div class="benefit-card">
+        <h3>
+         Scope of Work
+        </h3>
+        <ul>
+         <li>
+          Feasibility study and site assessment
+         </li>
+         <li>
+          Engineering design and specifications
+         </li>
+         <li>
+          Vendor coordination and procurement
+         </li>
+         <li>
+          Installation supervision and commissioning
+         </li>
+         <li>
+          Process optimization and staff training
+         </li>
+        </ul>
+       </div>
+       <div class="benefit-card">
+        <h3>
+         Results Achieved
+        </h3>
+        <ul>
+         <li>
+          25% higher gas yield than projections
+         </li>
+         <li>
+          Commissioned 3 weeks ahead of schedule
+         </li>
+         <li>
+          98.2% methane purity achieved
+         </li>
+         <li>
+          ROI period reduced by 18 months
+         </li>
+        </ul>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="consultation-form" id="consultation">
+     <div class="section-header">
+      <h2>
+       Start Your BioCNG Project
+      </h2>
+      <p>
+       Consult with our experts for a customized solution
+      </p>
+     </div>
+     <form action="https://formsubmit.co/info@shreejabiotech.shop" method="POST">
+      <input name="_subject" type="hidden" value="New Inquiry from Consulting"/>
+      <input name="_captcha" type="hidden" value="false"/>
+      <div class="form-group">
+       <input name="name" placeholder="Your Name" required="" type="text"/>
+      </div>
+      <div class="form-group">
+       <input name="email" placeholder="Your Email" required="" type="email"/>
+      </div>
+      <div class="form-group">
+       <input name="phone" placeholder="Your Phone" type="tel"/>
+      </div>
+      <div class="form-group">
+       <select name="interest" required="">
+        <option value="">
+         Select Interest
+        </option>
+        <option value="Bio-CNG">
+         Bio-CNG
+        </option>
+        <option value="Fertilizers">
+         Organic Fertilizers
+        </option>
+        <option value="Turnkey">
+         Turnkey Setup
+        </option>
+        <option value="Consulting">
+         Consulting
+        </option>
+        <option value="Carbon Credit">
+         Carbon Credit
+        </option>
+        <option value="Feedstock Analysis">
+         Feedstock Analysis
+        </option>
+        <option value="Other">
+         Other
+        </option>
+       </select>
+      </div>
+      <div class="form-group">
+       <textarea name="message" placeholder="Your Message" required=""></textarea>
+      </div>
+      <button class="btn" type="submit">
+       Send Message
+      </button>
+     </form>
+    </div>
+   </div>
+  </section>
+  <script>
+   // Animation on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            document.querySelectorAll('.animate-on-scroll').forEach(element => {
+                observer.observe(element);
+            });
+            
+            // Form submission
+            const form = document.getElementById('consultationForm');
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                // Form submission logic would go here
+                alert('Thank you for your inquiry! Our team will contact you shortly to discuss your BioCNG project.');
+                form.reset();
+            });
+        });
+  </script>
+ </body>
+</html>

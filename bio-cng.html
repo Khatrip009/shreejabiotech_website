@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Bio-CNG Solutions | Shreeja Biotech
+  </title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&amp;family=Roboto:wght@300;400;500&amp;display=swap" rel="stylesheet"/>
+  <style>
+   :root {
+            --primary: #1a5d1a;
+            --secondary: #0d47a1;
+            --accent: #ff9800;
+            --light: #f5f9f5;
+            --dark: #0d280d;
+            --gray: #4a4a4a;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .btn:hover {
+            background: #0f4d0f;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .btn-secondary {
+            background: var(--secondary);
+        }
+        
+        .btn-secondary:hover {
+            background: #0b3a8a;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 15px 0;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            margin-left: 15px;
+        }
+        
+        .logo-text h1 {
+            font-size: 26px;
+            margin-bottom: 0;
+            color: var(--primary);
+            letter-spacing: 1px;
+        }
+        
+        .logo-text span {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--secondary);
+            letter-spacing: 2px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 16px;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: var(--transition);
+        }
+        
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+        
+        .mobile-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(26, 93, 26, 0.85), rgba(13, 40, 13, 0.9)), url('https://images.unsplash.com/photo-1618477388954-7852f32655ec?q=80&w=1528') no-repeat center center/cover;
+            height: 70vh;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            padding-top: 80px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Bio-CNG Introduction */
+        .bio-intro {
+            background: var(--light);
+        }
+        
+        .intro-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .intro-text h2 {
+            color: var(--primary);
+        }
+        
+        .intro-image {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .intro-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        
+        .intro-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* Process Section */
+        .process-section {
+            background: #fff;
+        }
+        
+        .process-container {
+            position: relative;
+        }
+        
+        .process-steps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .step {
+            width: 300px;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: var(--transition);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .step:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: #fff;
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        .step-icon {
+            font-size: 50px;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+        
+        /* Benefits Section */
+        .benefits {
+            background: var(--light);
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .benefit-card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            text-align: center;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .benefit-icon {
+            font-size: 50px;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        /* Government Section */
+        .government {
+            background: linear-gradient(rgba(255,255,255,0.95), rgba(255,255,255,0.95)), url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1473') no-repeat center center/cover;
+        }
+        
+        .scheme-card {
+            background: #fff;
+            border-left: 4px solid var(--secondary);
+            padding: 25px;
+            border-radius: 4px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+        
+        .scheme-card h4 {
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            background: var(--primary);
+            color: #fff;
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        .contact-item {
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
+        
+        .contact-icon {
+            font-size: 24px;
+            color: var(--accent);
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .contact-form .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .contact-form input,
+        .contact-form textarea,
+        .contact-form select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 4px;
+            font-family: 'Roboto', sans-serif;
+            font-size: 16px;
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+        }
+        
+        .contact-form textarea {
+            height: 150px;
+        }
+        
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: rgba(255,255,255,0.7);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: #fff;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo h3 {
+            color: #fff;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        .footer-logo span {
+            color: var(--accent);
+        }
+        
+        .footer-links h4 {
+            color: #fff;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-links h4:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--accent);
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links ul li a {
+            color: #bbb;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links ul li a:hover {
+            color: var(--accent);
+            padding-left: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: #fff;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #bbb;
+            font-size: 14px;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        .delay-1 {
+            animation-delay: 0.2s;
+        }
+        
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+        
+        .delay-3 {
+            animation-delay: 0.6s;
+        }
+        
+        .delay-4 {
+            animation-delay: 0.8s;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .intro-content,
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-toggle {
+                display: block;
+            }
+            
+            nav ul {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: #fff;
+                flex-direction: column;
+                align-items: center;
+                padding-top: 50px;
+                transition: var(--transition);
+            }
+            
+            nav ul.active {
+                left: 0;
+            }
+            
+            nav ul li {
+                margin: 15px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .process-steps {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+        }
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo img {
+  height: 50px;
+}
+
+.logo-text h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.logo-text span {
+  color: #28a745; /* or your brand color */
+}
+  </style>
+ </head>
+ <body>
+  <!-- Header -->
+  <header>
+ <div class="container header-container">
+   <div class="logo" style="display: flex; align-items: center; gap: 10px;">
+    <a href="index.html">
+      <img src="Shreeja_LOGO.png" alt="Shreeja Biotech Logo" style="height: 50px;">
+    </a>
+    <div class="logo-text">
+      <h1 style="margin: 0;">
+        SHREEJA <span style="color: #28a745;">BIO-TECH</span>
+      </h1>
+    </div>
+      <div class="mobile-toggle" id="mobileToggle">
+     <i class="fas fa-bars">
+     </i>
+    </div>
+    <nav>
+     <ul>
+      <li>
+       <a href="../index.html">
+        Home
+       </a>
+      </li>
+      <li>
+       <a href="../index.html#about">
+        About
+       </a>
+      </li>
+      <li>
+       <a href="../index.html#services">
+        Services
+       </a>
+      </li>
+      <li>
+       <a href="../index.html#projects">
+        Projects
+       </a>
+      </li>
+      <li>
+       <a href="../index.html#contact">
+        Contact
+       </a>
+      </li>
+     </ul>
+    </nav>
+   </div>
+  </header>
+  <!-- Hero Section -->
+  <section class="hero">
+   <div class="container">
+    <div class="hero-content">
+     <h1>
+      Bio-CNG Solutions
+     </h1>
+     <p>
+      Transform organic waste into clean, renewable energy with our advanced Bio-CNG technology
+     </p>
+     <a class="btn" href="#contact">
+      Get a Consultation
+     </a>
+    </div>
+   </div>
+  </section>
+  <!-- Introduction Section -->
+  <section class="bio-intro">
+   <div class="container">
+    <div class="intro-content">
+     <div class="intro-text animate">
+      <h2>
+       What is Bio-CNG?
+      </h2>
+      <p>
+       Bio-CNG (Compressed Biogas) is a purified form of biogas that has been upgraded to remove impurities and compressed to a pressure similar to CNG. It contains over 95% methane and has calorific value comparable to fossil-based natural gas.
+      </p>
+      <h3>
+       Why Choose Bio-CNG?
+      </h3>
+      <p>
+       Bio-CNG is a sustainable alternative to fossil fuels that helps reduce greenhouse gas emissions while providing a reliable energy source. Our plants convert agricultural waste, municipal solid waste, and industrial effluents into clean energy.
+      </p>
+      <h3>
+       Our Technology
+      </h3>
+      <p>
+       Shreeja Biotech uses advanced anaerobic digestion technology combined with our patented semi-cryogenic purification system to produce Bio-CNG with 98% methane purity. Our systems are designed for maximum efficiency and minimal environmental impact.
+      </p>
+     </div>
+     <div class="intro-image animate delay-1">
+      <img alt="Bio-CNG Plant" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&amp;w=1470"/>
+     </div>
+    </div>
+   </div>
+  </section>
+  <!-- Process Section -->
+  <section class="process-section">
+   <div class="container">
+    <div class="section-title">
+     <h2>
+      Our Bio-CNG Implementation Process
+     </h2>
+     <p>
+      From concept to commissioning, we guide you through every step
+     </p>
+    </div>
+    <div class="process-container">
+     <div class="process-steps">
+      <div class="step animate">
+       <div class="step-number">
+        1
+       </div>
+       <div class="step-icon">
+        <i class="fas fa-file-alt">
+        </i>
+       </div>
+       <h3>
+        Documentation &amp; Initial Assessment
+       </h3>
+       <p>
+        Comprehensive review of project requirements, site conditions, and waste availability
+       </p>
+      </div>
+      <div class="step animate delay-1">
+       <div class="step-number">
+        2
+       </div>
+       <div class="step-icon">
+        <i class="fas fa-search-location">
+        </i>
+       </div>
+       <h3>
+        Site Inspection
+       </h3>
+       <p>
+        Technical team visits the location to evaluate land suitability, infrastructure, and logistics
+       </p>
+      </div>
+      <div class="step animate delay-2">
+       <div class="step-number">
+        3
+       </div>
+       <div class="step-icon">
+        <i class="fas fa-flask">
+        </i>
+       </div>
+       <h3>
+        Feedstock &amp; Feasibility Analysis
+       </h3>
+       <p>
+        Detailed analysis of organic waste composition, biogas potential, and project viability
+       </p>
+      </div>
+      <div class="step animate delay-3">
+       <div class="step-number">
+        4
+       </div>
+       <div class="step-icon">
+        <i class="fas fa-book">
+        </i>
+       </div>
+       <h3>
+        DPR Preparation
+       </h3>
+       <p>
+        Comprehensive Detailed Project Report including technical specifications and financial projections
+       </p>
+      </div>
+      <div class="step animate delay-4">
+       <div class="step-number">
+        5
+       </div>
+       <div class="step-icon">
+        <i class="fas fa-file-contract">
+        </i>
+       </div>
+       <h3>
+        Apply for LOI
+       </h3>
+       <p>
+        Submission of Letter of Intent to relevant authorities for project approval
+       </p>
+      </div>
+      <div class="step animate delay-1">
+       <div class="step-number">
+        6
+       </div>
+       <div class="step-icon">
+        <i class="fas fa-landmark">
+        </i>
+       </div>
+       <h3>
+        Government Approvals
+       </h3>
+       <p>
+        Assistance in obtaining necessary permits and clearances from regulatory bodies
+       </p>
+      </div>
+      <div class="step animate delay-2">
+       <div class="step-number">
+        7
+       </div>
+       <div class="step-icon">
+        <i class="fas fa-university">
+        </i>
+       </div>
+       <h3>
+        Bank Finance
+       </h3>
+       <p>
+        Support in securing project financing through banking institutions and government schemes
+       </p>
+      </div>
+      <div class="step animate delay-3">
+       <div class="step-number">
+        8
+       </div>
+       <div class="step-icon">
+        <i class="fas fa-hard-hat">
+        </i>
+       </div>
+       <h3>
+        Project Implementation
+       </h3>
+       <p>
+        Turnkey execution including installation, commissioning, and operational training
+       </p>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section>
+  <!-- Benefits Section -->
+  <section class="benefits">
+   <div class="container">
+    <div class="section-title">
+     <h2>
+      Benefits of Bio-CNG
+     </h2>
+     <p>
+      Why invest in Bio-CNG technology?
+     </p>
+    </div>
+    <div class="benefits-grid">
+     <div class="benefit-card animate">
+      <div class="benefit-icon">
+       <i class="fas fa-leaf">
+       </i>
+      </div>
+      <h3>
+       Environmental Sustainability
+      </h3>
+      <p>
+       Reduces greenhouse gas emissions by converting waste into clean energy
+      </p>
+     </div>
+     <div class="benefit-card animate delay-1">
+      <div class="benefit-icon">
+       <i class="fas fa-rupee-sign">
+       </i>
+      </div>
+      <h3>
+       Cost Savings
+      </h3>
+      <p>
+       Significant reduction in waste disposal costs and energy expenses
+      </p>
+     </div>
+     <div class="benefit-card animate delay-2">
+      <div class="benefit-icon">
+       <i class="fas fa-chart-line">
+       </i>
+      </div>
+      <h3>
+       Revenue Generation
+      </h3>
+      <p>
+       Creates new revenue streams from energy sales and carbon credits
+      </p>
+     </div>
+     <div class="benefit-card animate delay-3">
+      <div class="benefit-icon">
+       <i class="fas fa-tractor">
+       </i>
+      </div>
+      <h3>
+       Organic Fertilizer
+      </h3>
+      <p>
+       Produces nutrient-rich bio-fertilizer as a valuable byproduct
+      </p>
+     </div>
+     <div class="benefit-card animate delay-1">
+      <div class="benefit-icon">
+       <i class="fas fa-shield-alt">
+       </i>
+      </div>
+      <h3>
+       Energy Security
+      </h3>
+      <p>
+       Reduces dependence on fossil fuels and imported energy sources
+      </p>
+     </div>
+     <div class="benefit-card animate delay-2">
+      <div class="benefit-icon">
+       <i class="fas fa-medal">
+       </i>
+      </div>
+      <h3>
+       Government Incentives
+      </h3>
+      <p>
+       Eligible for subsidies and tax benefits under national renewable energy policies
+      </p>
+     </div>
+    </div>
+   </div>
+  </section>
+  <!-- Government Section -->
+  <section class="government">
+   <div class="container">
+    <div class="section-title">
+     <h2>
+      Government Support &amp; Schemes
+     </h2>
+     <p>
+      Financial incentives for Bio-CNG projects in India
+     </p>
+    </div>
+    <div class="scheme-card animate">
+     <h4>
+      SATAT Initiative (Sustainable Alternative Towards Affordable Transportation)
+     </h4>
+     <p>
+      Ministry of Petroleum and Natural Gas scheme promoting Bio-CNG as automotive fuel
+     </p>
+     <p>
+      <strong>
+       Benefits:
+      </strong>
+      Off-take guarantees, infrastructure support, financial incentives
+     </p>
+     <a class="btn" href="https://mopng.gov.in/en/satat" target="_blank">
+      Learn More
+     </a>
+    </div>
+    <div class="scheme-card animate delay-1">
+     <h4>
+      National Bioenergy Programme
+     </h4>
+     <p>
+      Ministry of New and Renewable Energy (MNRE) scheme for waste-to-energy projects
+     </p>
+     <p>
+      <strong>
+       Benefits:
+      </strong>
+      Capital subsidy up to ₹4 crore per project, interest subsidies
+     </p>
+     <a class="btn" href="https://mnre.gov.in/bio-energy/current-schemes" target="_blank">
+      Learn More
+     </a>
+    </div>
+    <div class="scheme-card animate delay-2">
+     <h4>
+      NABARD Financing
+     </h4>
+     <p>
+      Refinancing scheme for renewable energy projects
+     </p>
+     <p>
+      <strong>
+       Benefits:
+      </strong>
+      Low-interest loans, extended repayment periods, reduced collateral requirements
+     </p>
+     <a class="btn" href="https://www.nabard.org/content.aspx?id=658" target="_blank">
+      Learn More
+     </a>
+    </div>
+    <div class="scheme-card animate delay-3">
+     <h4>
+      Gujarat State Policy for Biofuels
+     </h4>
+     <p>
+      State-specific incentives for Bio-CNG production
+     </p>
+     <p>
+      <strong>
+       Benefits:
+      </strong>
+      Subsidies on land acquisition, tax exemptions, power tariff concessions
+     </p>
+     <a class="btn" href="https://gujep.gujarat.gov.in/biogas-policy.htm" target="_blank">
+      Learn More
+     </a>
+    </div>
+   </div>
+  </section>
+  <!-- Contact Section -->
+  <section class="contact-section" id="contact">
+   <div class="container">
+    <div class="section-title">
+     <h2>
+      Contact Us for Bio-CNG Solutions
+     </h2>
+     <p>
+      Get expert consultation for your Bio-CNG project
+     </p>
+    </div>
+    <div class="contact-container">
+     <div class="contact-info">
+      <div class="contact-item animate">
+       <div class="contact-icon">
+        <i class="fas fa-map-marker-alt">
+        </i>
+       </div>
+       <div>
+        <h3>
+         Our Location
+        </h3>
+        <p>
+         372, V Square, Palanpur jakatnaka, Surat - 395 005, Gujarat, India
+        </p>
+       </div>
+      </div>
+      <div class="contact-item animate delay-1">
+       <div class="contact-icon">
+        <i class="fas fa-phone-alt">
+        </i>
+       </div>
+       <div>
+        <h3>
+         Phone Number
+        </h3>
+        <p>
+         +91 70697 85900
+        </p>
+       </div>
+      </div>
+      <div class="contact-item animate delay-2">
+       <div class="contact-icon">
+        <i class="fas fa-envelope">
+        </i>
+       </div>
+       <div>
+        <h3>
+         Email Address
+        </h3>
+        <p>
+         info@shreejabiotech.shop
+        </p>
+        <p>
+         sales@shreejabiotech.shop
+        </p>
+       </div>
+      </div>
+      <div class="contact-item animate delay-3">
+       <div class="contact-icon">
+        <i class="fas fa-clock">
+        </i>
+       </div>
+       <div>
+        <h3>
+         Business Hours
+        </h3>
+        <p>
+         Monday - Saturday: 9:00 AM - 6:00 PM
+        </p>
+       </div>
+      </div>
+     </div>
+     <div class="contact-form animate delay-1">
+      <form action="https://formsubmit.co/info@shreejabiotech.shop" method="POST">
+       <input name="_subject" type="hidden" value="New Inquiry from Bio Cng"/>
+       <input name="_captcha" type="hidden" value="false"/>
+       <div class="form-group">
+        <input name="name" placeholder="Your Name" required="" type="text"/>
+       </div>
+       <div class="form-group">
+        <input name="email" placeholder="Your Email" required="" type="email"/>
+       </div>
+       <div class="form-group">
+        <input name="phone" placeholder="Your Phone" type="tel"/>
+       </div>
+       <div class="form-group">
+        <select name="interest" required="">
+         <option value="">
+          Select Interest
+         </option>
+         <option value="Bio-CNG">
+          Bio-CNG
+         </option>
+         <option value="Fertilizers">
+          Organic Fertilizers
+         </option>
+         <option value="Turnkey">
+          Turnkey Setup
+         </option>
+         <option value="Consulting">
+          Consulting
+         </option>
+         <option value="Carbon Credit">
+          Carbon Credit
+         </option>
+         <option value="Feedstock Analysis">
+          Feedstock Analysis
+         </option>
+         <option value="Other">
+          Other
+         </option>
+        </select>
+       </div>
+       <div class="form-group">
+        <textarea name="message" placeholder="Your Message" required=""></textarea>
+       </div>
+       <button class="btn" type="submit">
+        Send Message
+       </button>
+      </form>
+     </div>
+    </div>
+   </div>
+  </section>
+  <!-- Footer -->
+  <footer>
+   <div class="container">
+    <div class="footer-container">
+     <div class="footer-links">
+      <div class="footer-logo">
+       <h3>
+        SHREEJA
+        <span>
+         BIO-TECH
+        </span>
+       </h3>
+       <p>
+        Innovating Energy, Advancing Solutions
+       </p>
+       <div class="social-links">
+        <a href="#">
+         <i class="fab fa-facebook-f">
+         </i>
+        </a>
+        <a href="#">
+         <i class="fab fa-twitter">
+         </i>
+        </a>
+        <a href="#">
+         <i class="fab fa-linkedin-in">
+         </i>
+        </a>
+        <a href="#">
+         <i class="fab fa-instagram">
+         </i>
+        </a>
+       </div>
+      </div>
+     </div>
+     <div class="footer-links">
+      <h4>
+       Quick Links
+      </h4>
+      <ul>
+       <li>
+        <a href="../index.html">
+         Home
+        </a>
+       </li>
+       <li>
+        <a href="../index.html#about">
+         About Us
+        </a>
+       </li>
+       <li>
+        <a href="../index.html#process">
+         Our Process
+        </a>
+       </li>
+       <li>
+        <a href="../index.html#projects">
+         Projects
+        </a>
+       </li>
+       <li>
+        <a href="../index.html#contact">
+         Contact
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="footer-links">
+      <h4>
+       Our Services
+      </h4>
+      <ul>
+       <li>
+        <a href="bio-cng.html">
+         Bio-CNG Production
+        </a>
+       </li>
+       <li>
+        <a href="fertilizers.html">
+         Organic Fertilizers
+        </a>
+       </li>
+       <li>
+        <a href="turnkey.html">
+         Turnkey Plant Setup
+        </a>
+       </li>
+       <li>
+        <a href="consulting.html">
+         Technical Consulting
+        </a>
+       </li>
+       <li>
+        <a href="carbon-credit.html">
+         Carbon Credit Services
+        </a>
+       </li>
+       <li>
+        <a href="feedstock.html">
+         Feedstock Analysis
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="footer-links">
+      <h4>
+       Contact Info
+      </h4>
+      <ul>
+       <li>
+        <i class="fas fa-map-marker-alt">
+        </i>
+        372, V Square, Surat - 395005
+       </li>
+       <li>
+        <i class="fas fa-phone">
+        </i>
+        +91 70697 85900
+       </li>
+       <li>
+        <i class="fas fa-envelope">
+        </i>
+        info@shreejabiotech.shop
+       </li>
+       <li>
+        <i class="fas fa-clock">
+        </i>
+        Mon-Sat: 9:00 AM - 6:00 PM
+       </li>
+      </ul>
+     </div>
+    </div>
+    <div class="copyright">
+     <p>
+      © 2024 Shreeja Biotech. All Rights Reserved. | GST No.: 24AFNFS8878N1ZS
+     </p>
+    </div>
+   </div>
+  </footer>
+  <script>
+   // Mobile Navigation Toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navMenu = document.querySelector('nav ul');
+        
+        mobileToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileToggle.querySelector('i').classList.toggle('fa-bars');
+            mobileToggle.querySelector('i').classList.toggle('fa-times');
+        });
+        
+        // Form Submission
+        const contactForm = document.getElementById('bioCngForm');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for your inquiry! Our team will contact you shortly.');
+            contactForm.reset();
+        });
+        
+        // Animation on scroll
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.animate');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = 1;
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+  </script>
+ </body>
+</html>

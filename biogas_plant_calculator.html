@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shreeja BioTech - Bio-CNG Plant Calculator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- jsPDF and html2canvas for PDF generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0fdf4; /* Light green background */
+            color: #1a202c;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .header {
+            background-color: #ffffff;
+            padding: 1rem 2rem;
+            border-bottom: 4px solid #38a169; /* Green border */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 0 0 15px 15px;
+        }
+        .header img {
+            height: 60px; /* Adjust logo size */
+        }
+        .btn-primary {
+            background-color: #38a169; /* Green */
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            font-weight: 600;
+        }
+        .btn-primary:hover {
+            background-color: #2f855a; /* Darker green */
+            transform: translateY(-2px);
+        }
+        .btn-secondary {
+            background-color: #f6ad55; /* Orange */
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            font-weight: 600;
+        }
+        .btn-secondary:hover {
+            background-color: #ed8936; /* Darker orange */
+            transform: translateY(-2px);
+        }
+        .card {
+            background-color: #ffffff;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+        .input-field {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #cbd5e0;
+            border-radius: 0.5rem;
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            color: #4a5568;
+        }
+        .input-field:focus {
+            outline: none;
+            border-color: #38a169;
+            box-shadow: 0 0 0 3px rgba(56, 161, 105, 0.2);
+        }
+        .result-section h3 {
+            color: #2f855a;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px dashed #e2e8f0;
+        }
+        .result-item:last-child {
+            border-bottom: none;
+        }
+        .result-item strong {
+            color: #2d3748;
+        }
+        .footer {
+            background-color: #1a202c;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            border-radius: 15px 15px 0 0;
+            margin-top: 2rem;
+        }
+        .footer a {
+            color: #f6ad55;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        .animated-gradient {
+            background: linear-gradient(45deg, #38a169, #f6ad55, #e53e3e);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .fade-in {
+            animation: fadeIn 1s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .shreeja-watermark {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            opacity: 0.1;
+            z-index: 9999;
+            pointer-events: none;
+        }
+        .shreeja-watermark img {
+            width: 150px;
+            height: auto;
+        }
+        /* PDF Content Wrapper - Only for hiding/showing content for html2canvas */
+        .pdf-content-wrapper {
+            position: absolute;
+            left: -9999px; /* Hide off-screen */
+            top: -9999px;
+            width: 210mm; /* A4 width */
+            height: 297mm; /* A4 height */
+            background-color: white;
+            color: black;
+            font-family: 'Inter', sans-serif;
+            box-sizing: border-box;
+            /* No padding or border here, will be added by jsPDF */
+        }
+        .pdf-header, .pdf-footer {
+            text-align: center;
+            width: 100%;
+            margin-bottom: 10mm;
+        }
+        .pdf-header img {
+            height: 50px;
+            margin-bottom: 5mm;
+        }
+        .pdf-section {
+            margin-bottom: 15mm;
+        }
+        .pdf-section h2 {
+            font-size: 24px;
+            color: #38a169;
+            margin-bottom: 5mm;
+            border-bottom: 2px solid #f6ad55;
+            padding-bottom: 2mm;
+        }
+        .pdf-section h3 {
+            font-size: 18px;
+            color: #2f855a;
+            margin-top: 10mm;
+            margin-bottom: 3mm;
+        }
+        .pdf-section p, .pdf-section ul {
+            font-size: 12px;
+            line-height: 1.5;
+            margin-bottom: 2mm;
+        }
+        .pdf-section ul {
+            list-style-type: disc;
+            margin-left: 15px;
+        }
+        .pdf-contact-info {
+            text-align: center;
+            margin-top: 20mm;
+            font-size: 10px;
+        }
+        .pdf-page-break {
+            page-break-before: always;
+        }
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #38a169;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+            display: none; /* Hidden by default */
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        /* PDF Table Styling */
+        .pdf-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            margin-bottom: 15px;
+            font-size: 11px;
+        }
+        .pdf-table th, .pdf-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .pdf-table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            color: #333;
+        }
+        .pdf-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .pdf-table tfoot td {
+            font-weight: bold;
+            background-color: #e6ffe6; /* Light green for totals */
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Shreeja Biotech Watermark -->
+    <div class="shreeja-watermark">
+        <img src="Shreeja_LOGO.png" alt="Shreeja BioTech Watermark">
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <img src="Shreeja_LOGO.png" alt="Shreeja BioTech Logo">
+        <nav>
+            <a href="../index.html" class="btn-primary">Home</a>
+        </nav>
+    </header>
+
+    <div class="container py-8">
+        <h1 class="text-4xl font-extrabold text-center text-gray-800 mb-8 animated-gradient bg-clip-text text-transparent">
+            Bio-CNG Plant Feasibility Calculator
+        </h1>
+
+        <!-- Input Form -->
+        <div class="card fade-in">
+            <h2 class="text-2xl font-bold text-gray-700 mb-6">Input Your Project Details</h2>
+            <form id="calculatorForm" onsubmit="event.preventDefault(); calculateProject();">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="feedstockType" class="block text-gray-700 text-sm font-bold mb-2">Select Feedstock Type:</label>
+                        <select id="feedstockType" class="input-field">
+                            <option value="Napier Grass">Napier Grass</option>
+                            <option value="Cow Dung">Cow Dung</option>
+                            <option value="Agriculture Residue">Agriculture Residue</option>
+                            <option value="Press Mud">Press Mud</option>
+                            <option value="Spent Wash">Spent Wash</option>
+                            <option value="Bagasse">Bagasse</option>
+                            <option value="Municipal Solid Waste">Municipal Solid Waste</option>
+                            <option value="Chicken Litter">Chicken Litter</option>
+                            <option value="Forest Residue">Forest Residue</option>
+                            <option value="Sewage Waste">Sewage Waste</option>
+                            <option value="Mixed">Mixed Feedstock (Enter quantities below)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="feedstockQuantity" class="block text-gray-700 text-sm font-bold mb-2">Feedstock Quantity (Tons/KL/MLD per day):</label>
+                        <input type="number" id="feedstockQuantity" class="input-field" placeholder="e.g., 55 for Napier Grass" step="0.01" required>
+                    </div>
+                </div>
+
+                <div id="mixedFeedstockSection" class="hidden mt-4 p-4 border border-gray-200 rounded-lg bg-gray-50">
+                    <h3 class="text-lg font-semibold text-gray-700 mb-4">Mixed Feedstock Quantities:</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <!-- Dynamic inputs for mixed feedstock -->
+                        <div>
+                            <label for="mixed_Napier Grass" class="block text-gray-700 text-sm mb-1">Napier Grass (Tons):</label>
+                            <input type="number" id="mixed_Napier Grass" class="input-field" value="0" step="0.01">
+                        </div>
+                        <div>
+                            <label for="mixed_Cow Dung" class="block text-gray-700 text-sm mb-1">Cow Dung (Tons):</label>
+                            <input type="number" id="mixed_Cow Dung" class="input-field" value="0" step="0.01">
+                        </div>
+                        <div>
+                            <label for="mixed_Agriculture Residue" class="block text-gray-700 text-sm mb-1">Agriculture Residue (Tons):</label>
+                            <input type="number" id="mixed_Agriculture Residue" class="input-field" value="0" step="0.01">
+                        </div>
+                        <div>
+                            <label for="mixed_Press Mud" class="block text-gray-700 text-sm mb-1">Press Mud (Tons):</label>
+                            <input type="number" id="mixed_Press Mud" class="input-field" value="0" step="0.01">
+                        </div>
+                        <div>
+                            <label for="mixed_Spent Wash" class="block text-gray-700 text-sm mb-1">Spent Wash (KL):</label>
+                            <input type="number" id="mixed_Spent Wash" class="input-field" value="0" step="0.01">
+                        </div>
+                        <div>
+                            <label for="mixed_Bagasse" class="block text-gray-700 text-sm mb-1">Bagasse (Tons):</label>
+                            <input type="number" id="mixed_Bagasse" class="input-field" value="0" step="0.01">
+                        </div>
+                        <div>
+                            <label for="mixed_Municipal Solid Waste" class="block text-gray-700 text-sm mb-1">Municipal Solid Waste (Tons):</label>
+                            <input type="number" id="mixed_Municipal Solid Waste" class="input-field" value="0" step="0.01">
+                        </div>
+                        <div>
+                            <label for="mixed_Chicken Litter" class="block text-gray-700 text-sm mb-1">Chicken Litter (Tons):</label>
+                            <input type="number" id="mixed_Chicken Litter" class="input-field" value="0" step="0.01">
+                        </div>
+                        <div>
+                            <label for="mixed_Forest Residue" class="block text-gray-700 text-sm mb-1">Forest Residue (Tons):</label>
+                            <input type="number" id="mixed_Forest Residue" class="input-field" value="0" step="0.01">
+                        </div>
+                        <div>
+                            <label for="mixed_Sewage Waste" class="block text-gray-700 text-sm mb-1">Sewage Waste (MLD):</label>
+                            <input type="number" id="mixed_Sewage Waste" class="input-field" value="0" step="0.01">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6">
+                    <label for="desiredBioCNGOutput" class="block text-gray-700 text-sm font-bold mb-2">Desired Purified Bio-CNG Output (KG per day):</label>
+                    <input type="number" id="desiredBioCNGOutput" class="input-field" placeholder="e.g., 1000" step="0.01" required>
+                </div>
+
+                <div class="mt-8 flex justify-center space-x-4">
+                    <button type="submit" class="btn-primary">Calculate Project</button>
+                    <button type="button" onclick="downloadPdf()" class="btn-secondary" id="downloadPdfBtn" style="display: none;">Download as PDF</button>
+                </div>
+                <div class="loader" id="loader"></div>
+            </form>
+        </div>
+
+        <!-- Results Display Area -->
+        <div id="results" class="card hidden fade-in">
+            <h2 class="text-2xl font-bold text-gray-700 mb-6">Project Calculation Results</h2>
+
+            <!-- Feedstock & Biogas Production -->
+            <div class="result-section">
+                <h3>1. Feedstock & Biogas Production</h3>
+                <div class="result-item">
+                    <span>Total Feedstock Input (Tons/KL/MLD per day):</span>
+                    <strong id="totalFeedstock">0</strong>
+                </div>
+                <div class="result-item">
+                    <span>Water Required (Tons per day):</span>
+                    <strong id="waterRequired">0</strong>
+                </div>
+                <div class="result-item">
+                    <span>Total Daily Input Volume (m³):</span>
+                    <strong id="dailyInputVolume">0</strong>
+                </div>
+                <div class="result-item">
+                    <span>Raw Biogas Production (m³ per day):</span>
+                    <strong id="rawBiogasProduction">0</strong>
+                </div>
+                <div class="result-item">
+                    <span>Purified Bio-CNG Production (KG per day):</span>
+                    <strong id="purifiedBioCNGProduction">0</strong>
+                </div>
+                <div class="result-item">
+                    <span>Liquefied CO2 Production (KG per day):</span>
+                    <strong id="liquefiedCO2Production">0</strong>
+                </div>
+                <div class="result-item">
+                    <span>Feedstock Preparation:</span>
+                    <strong>Screwpress Machine for Dewatering</strong>
+                </div>
+                <div class="result-item">
+                    <span>Pre-digestion:</span>
+                    <strong>2 Days</strong>
+                </div>
+            </div>
+
+            <!-- Digester Size -->
+            <div class="result-section mt-8">
+                <h3>2. Digester Size Calculation</h3>
+                <div class="result-item">
+                    <span>Retention Time:</span>
+                    <strong>30 Days</strong>
+                </div>
+                <div class="result-item">
+                    <span>Per Day Digester Volume (m³):</span>
+                    <strong id="perDayDigesterVolume">0</strong>
+                </div>
+                <div class="result-item">
+                    <span>Gross Digester Volume with Buffer (m³):</span>
+                    <strong id="grossDigesterVolume">0</strong>
+                </div>
+            </div>
+
+            <!-- Purification System -->
+            <div class="result-section mt-8">
+                <h3>3. Purification System</h3>
+                <div class="result-item">
+                    <span>System Type:</span>
+                    <strong>Semi-Cryogenic Purification System</strong>
+                </div>
+                <div class="result-item">
+                    <span>Capacity & Quality:</span>
+                    <strong>Designed for optimal methane recovery (up to 98% purity)</strong>
+                </div>
+            </div>
+
+            <!-- Land Area -->
+            <div class="result-section mt-8">
+                <h3>4. Required Land Area</h3>
+                <div class="result-item">
+                    <span>Total Land Area Required (Acres):</span>
+                    <strong id="landAreaRequired">0</strong>
+                </div>
+                <div class="result-item">
+                    <span>Includes:</span>
+                    <strong>Plant, Raw Material Storage, Byproduct Management</strong>
+                </div>
+            </div>
+
+            <!-- Financial Feasibility -->
+            <div class="result-section mt-8">
+                <h3>5. Financial Feasibility</h3>
+                <div class="result-item">
+                    <span>Total Project Cost (INR):</span>
+                    <strong id="totalProjectCost">0</strong>
+                </div>
+                <div class="result-item">
+                    <span>Bank Loan (70% of Project Cost - INR):</span>
+                    <strong id="bankLoan">0</strong>
+                </div>
+                <div class="result-item">
+                    <span>Annual Interest on Loan (9.5% - INR):</span>
+                    <strong id="annualInterest">0</strong>
+                </div>
+                <h4 class="text-lg font-semibold text-gray-700 mt-4 mb-2">Annual Operational Costs:</h4>
+                <div class="result-item">
+                    <span>Feedstock Cost (INR):</span>
+                    <strong id="annualFeedstockCost">0</strong>
+                </div>
+                <div class="result-item">
+                    <span>Energy Cost (INR):</span>
+                    <strong id="annualEnergyCost">0</strong>
+                </div>
+                <div class="result-item">
+                    <span>Salary Cost (INR):</span>
+                    <strong id="annualSalaryCost">0</strong>
+                </div>
+                <div class="result-item">
+                    <span>Additional Expenses (INR):</span>
+                    <strong id="annualAdditionalExpense">0</strong>
+                </div>
+                <div class="result-item font-bold text-lg">
+                    <span>Total Annual Operational Cost (INR):</span>
+                    <strong id="totalAnnualOperationalCost">0</strong>
+                </div>
+
+                <h4 class="text-lg font-semibold text-gray-700 mt-4 mb-2">Annual Revenue:</h4>
+                <div class="result-item">
+                    <span>Bio-CNG Sales Revenue (INR):</span>
+                    <strong id="bioCNGSalesRevenue">0</strong>
+                </div>
+                <div class="result-item">
+                    <span>Liquid Fertilizer Sales Revenue (INR):</span>
+                    <strong id="liquidFertilizerRevenue">0</strong>
+                </div>
+                <div class="result-item">
+                    <span>Solid Fertilizer Sales Revenue (INR):</span>
+                    <strong id="solidFertilizerRevenue">0</strong>
+                </div>
+                 <div class="result-item">
+                    <span>Liquefied CO2 Sales Revenue (INR):</span>
+                    <strong id="liquefiedCO2Revenue">0</strong>
+                </div>
+                <div class="result-item font-bold text-lg">
+                    <span>Total Annual Revenue (INR):</span>
+                    <strong id="totalAnnualRevenue">0</strong>
+                </div>
+                <div class="result-item font-bold text-xl mt-4 text-green-700">
+                    <span>Annual Net Profit (INR):</span>
+                    <strong id="annualNetProfit">0</strong>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="card fade-in">
+            <h2 class="text-2xl font-bold text-gray-700 mb-6">Contact Shreeja BioTech for a Detailed Proposal</h2>
+            <form action="https://formsubmit.co/info@shreejabiotech.shop" method="POST">
+                <input type="hidden" name="_subject" value="Bio-CNG Plant Inquiry from Website Calculator">
+                <input type="hidden" name="_autoresponse" value="Thank you for your inquiry! We have received your details and will get back to you shortly.">
+                <input type="hidden" name="_template" value="box">
+
+                <label for="contactName" class="block text-gray-700 text-sm font-bold mb-2">Your Name:</label>
+                <input type="text" name="name" id="contactName" class="input-field" required>
+
+                <label for="contactEmail" class="block text-gray-700 text-sm font-bold mb-2">Your Email:</label>
+                <input type="email" name="email" id="contactEmail" class="input-field" required>
+
+                <label for="contactPhone" class="block text-gray-700 text-sm font-bold mb-2">Your Phone Number:</label>
+                <input type="tel" name="phone" id="contactPhone" class="input-field">
+
+                <label for="contactMessage" class="block text-gray-700 text-sm font-bold mb-2">Message:</label>
+                <textarea name="message" id="contactMessage" class="input-field h-32 resize-y" placeholder="Tell us more about your project needs..."></textarea>
+
+                <button type="submit" class="btn-primary w-full mt-4">Submit Inquiry</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 Shreeja BioTech. All rights reserved.</p>
+        <p>Innovating Energy, Advancing Solutions</p>
+        <p>Contact: +91 70697 85900 | Email: <a href="mailto:info@shreejabiotech.shop">info@shreejabiotech.shop</a></p>
+        <p>Address: 372, V Square, Palanpur jakatnaka, Surat - 395 005</p>
+        <p class="mt-4">Website Visitors: <span id="visitorCount" class="font-bold">0</span></p>
+    </footer>
+
+    <!-- Hidden PDF Content Template -->
+    <div id="pdfContent" class="pdf-content-wrapper">
+        <div class="pdf-header">
+            <img src="Shreeja_LOGO.png" alt="Shreeja BioTech Logo">
+            <h1 style="font-size: 28px; color: #38a169; margin-top: 10px;">Bio-CNG Plant Feasibility Report</h1>
+            <p style="font-size: 10px; color: #666;">Innovating Energy, Advancing Solutions</p>
+            <hr style="border: 0; height: 1px; background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #f6ad55, rgba(0, 0, 0, 0)); margin: 10px 0;">
+        </div>
+
+        <div class="pdf-section">
+            <h2>Project Calculation Summary</h2>
+            <p>This report provides a detailed feasibility analysis for your proposed Bio-CNG plant, based on the inputs provided through our online calculator. Shreeja BioTech is committed to delivering sustainable and efficient waste-to-energy solutions.</p>
+
+            <h3>1. Feedstock & Biogas Production</h3>
+            <table class="pdf-table">
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Total Feedstock Input (Tons/KL/MLD per day)</td>
+                        <td id="pdf_totalFeedstock"></td>
+                    </tr>
+                    <tr>
+                        <td>Water Required (Tons per day)</td>
+                        <td id="pdf_waterRequired"></td>
+                    </tr>
+                    <tr>
+                        <td>Total Daily Input Volume (m³)</td>
+                        <td id="pdf_dailyInputVolume"></td>
+                    </tr>
+                    <tr>
+                        <td>Raw Biogas Production (m³ per day)</td>
+                        <td id="pdf_rawBiogasProduction"></td>
+                    </tr>
+                    <tr>
+                        <td>Purified Bio-CNG Production (KG per day)</td>
+                        <td id="pdf_purifiedBioCNGProduction"></td>
+                    </tr>
+                    <tr>
+                        <td>Liquefied CO2 Production (KG per day)</td>
+                        <td id="pdf_liquefiedCO2Production"></td>
+                    </tr>
+                    <tr>
+                        <td>Feedstock Preparation</td>
+                        <td>Screwpress Machine for Dewatering</td>
+                    </tr>
+                    <tr>
+                        <td>Pre-digestion</td>
+                        <td>2 Days</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>2. Digester Size Calculation</h3>
+            <table class="pdf-table">
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Retention Time</td>
+                        <td>30 Days</td>
+                    </tr>
+                    <tr>
+                        <td>Per Day Digester Volume (m³)</td>
+                        <td id="pdf_perDayDigesterVolume"></td>
+                    </tr>
+                    <tr>
+                        <td>Gross Digester Volume with Buffer (m³)</td>
+                        <td id="pdf_grossDigesterVolume"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>3. Purification System</h3>
+            <table class="pdf-table">
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>System Type</td>
+                        <td>Semi-Cryogenic Purification System</td>
+                    </tr>
+                    <tr>
+                        <td>Capacity & Quality</td>
+                        <td>Designed for optimal methane recovery (up to 98% purity)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>4. Required Land Area</h3>
+            <table class="pdf-table">
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Total Land Area Required (Acres)</td>
+                        <td id="pdf_landAreaRequired"></td>
+                    </tr>
+                    <tr>
+                        <td>Includes</td>
+                        <td>Plant, Raw Material Storage, Byproduct Management</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="pdf-page-break"></div>
+
+        <div class="pdf-section">
+            <h2>Financial Feasibility Analysis</h2>
+            <p>A detailed financial projection is crucial for any successful Bio-CNG project. Below is an estimated financial overview based on standard industry benchmarks and your desired output.</p>
+
+            <h3>Project Costs</h3>
+            <table class="pdf-table">
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>Amount (INR)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Total Project Cost</td>
+                        <td id="pdf_totalProjectCost"></td>
+                    </tr>
+                    <tr>
+                        <td>Bank Loan (70% of Project Cost)</td>
+                        <td id="pdf_bankLoan"></td>
+                    </tr>
+                    <tr>
+                        <td>Annual Interest on Loan (9.5%)</td>
+                        <td id="pdf_annualInterest"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Annual Operational Costs</h3>
+            <table class="pdf-table">
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>Amount (INR)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Feedstock Cost</td>
+                        <td id="pdf_annualFeedstockCost"></td>
+                    </tr>
+                    <tr>
+                        <td>Energy Cost</td>
+                        <td id="pdf_annualEnergyCost"></td>
+                    </tr>
+                    <tr>
+                        <td>Salary Cost</td>
+                        <td id="pdf_annualSalaryCost"></td>
+                    </tr>
+                    <tr>
+                        <td>Additional Expenses</td>
+                        <td id="pdf_annualAdditionalExpense"></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td><strong>Total Annual Operational Cost</strong></td>
+                        <td id="pdf_totalAnnualOperationalCost"></td>
+                    </tr>
+                </tfoot>
+            </table>
+
+            <h3>Annual Revenue Streams</h3>
+            <table class="pdf-table">
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>Amount (INR)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Bio-CNG Sales Revenue</td>
+                        <td id="pdf_bioCNGSalesRevenue"></td>
+                    </tr>
+                    <tr>
+                        <td>Liquid Fertilizer Sales Revenue</td>
+                        <td id="pdf_liquidFertilizerRevenue"></td>
+                    </tr>
+                    <tr>
+                        <td>Solid Fertilizer Sales Revenue</td>
+                        <td id="pdf_solidFertilizerRevenue"></td>
+                    </tr>
+                    <tr>
+                        <td>Liquefied CO2 Sales Revenue</td>
+                        <td id="pdf_liquefiedCO2Revenue"></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td><strong>Total Annual Revenue</strong></td>
+                        <td id="pdf_totalAnnualRevenue"></td>
+                    </tr>
+                </tfoot>
+            </table>
+
+            <p style="font-size: 16px; font-weight: bold; color: #2f855a; margin-top: 15px;"><strong>Annual Net Profit (INR):</strong> <span id="pdf_annualNetProfit"></span></p>
+        </div>
+
+        <div class="pdf-page-break"></div>
+
+        <div class="pdf-section">
+            <h2>The Promise of Bio-CNG: A Sustainable Future</h2>
+            <p>Bio-CNG (Compressed Biogas) is a highly purified form of biogas, primarily methane, derived from organic waste. It serves as a renewable and clean fuel source, offering a compelling alternative to fossil fuels. The production of Bio-CNG not only addresses waste management challenges but also contributes significantly to energy security and environmental sustainability.</p>
+
+            <h3>National and International Scope</h3>
+            <p>The Bio-CNG sector is experiencing rapid growth globally, driven by increasing environmental concerns, energy demands, and supportive government policies. Nations are actively promoting waste-to-energy initiatives to reduce greenhouse gas emissions and enhance circular economies. In India, the SATAT (Sustainable Alternative Towards Affordable Transportation) initiative is a testament to the government's commitment, aiming to establish 5,000 Bio-CNG plants by 2023, with an investment of ₹1.75 lakh crore. Internationally, countries in Southeast Asia, Europe, and North America are heavily investing in biogas technologies to meet their renewable energy targets.</p>
+
+            <h3>Benefits of Bio-CNG Business</h3>
+            <ul>
+                <li><strong>Environmental Benefits:</strong> Reduces greenhouse gas emissions, mitigates climate change, prevents soil and water pollution from organic waste, and promotes sustainable waste management.</li>
+                <li><strong>Social Benefits:</strong> Creates local employment opportunities in rural and urban areas, improves sanitation, and provides clean cooking fuel for households.</li>
+                <li><strong>Financial Benefits:</strong> Offers attractive returns on investment through the sale of Bio-CNG and valuable byproducts like organic fertilizers. Potential for carbon credit generation.</li>
+                <li><strong>Employment Generation:</strong> From feedstock collection and processing to plant operation and maintenance, the Bio-CNG industry generates a wide range of skilled and unskilled jobs.</li>
+            </ul>
+        </div>
+
+        <div class="pdf-page-break"></div>
+
+        <div class="pdf-section">
+            <h2>WHY CHOOSE SHREEJA BIOTECH?</h2>
+            <p>At Shreeja Biotech, we believe in building a sustainable energy future powered by technology, innovation, and impact-driven execution. Here's why leading banks, investors, and industrial partners are choosing us:</p>
+
+            <h3>✅ Expertise in High-Efficiency Biogas Plants</h3>
+            <p>We are industry leaders in advanced Bio-CNG and waste-to-energy plant development, backed by in-house engineering and real-world project success. Our processes are designed to deliver high gas yields, long-term reliability, and efficient resource recovery.</p>
+
+            <h3>✅ Hybrid & Smart Biogas Upgradation Systems</h3>
+            <p>We offer custom-engineered purification systems, including:</p>
+            <ul>
+                <li>Water Scrubbing</li>
+                <li>Pressure Swing Adsorption (PSA)</li>
+                <li>Semi-Cryogenic Cooling Separation Technology (up to 98% methane purity)</li>
+            </ul>
+            <p>These ensure maximum methane recovery and enable monetization of byproducts like CO₂ and fertilizer-grade slurry.</p>
+
+            <h3>✅ Turnkey & Customized Solutions</h3>
+            <p>From feasibility to funding, and from design to commissioning — Shreeja Biotech provides end-to-end solutions tailored to:</p>
+            <ul>
+                <li>Feedstock variability (Napier Grass, agricultural waste, food waste, etc.)</li>
+                <li>Land conditions and scale</li>
+                <li>Client budget and ROI models</li>
+                <li>MNRE, NABARD, and CGTMSE-based financing frameworks</li>
+            </ul>
+
+            <h3>✅ Sustainability & Carbon Credit Focus</h3>
+            <p>We don't just deliver gas — we enable carbon-negative operations through:</p>
+            <ul>
+                <li>CO₂ recovery and resale</li>
+                <li>Organic fertilizer production</li>
+                <li>Digitized monitoring and emission tracking</li>
+                <li>Scope for participation in carbon credit markets (VCU, Gold Standard)</li>
+            </ul>
+
+            <h3>✅ Strong International Presence</h3>
+            <p>Shreeja Biotech is currently executing and consulting on Bio-CNG and renewable energy projects in Malaysia and India, with active partnerships in Southeast Asia. Our vision is global — our technology is scalable — and our commitment is local.</p>
+        </div>
+
+        <div class="pdf-contact-info">
+            <hr style="border: 0; height: 1px; background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #f6ad55, rgba(0, 0, 0, 0)); margin: 10px auto; width: 50%;">
+            <p>For Shreeja BioTech</p>
+            <p>Authorized Signatory: Mr. Pankaj Khatri, Partner</p>
+            <p>Email ID: khatrip.009@gmail.com</p>
+            <p>Website: www.shreejabiotech.shop</p>
+            <p>Phone: +91 70697 85900</p>
+            <p>Address: 372, V Square, Palanpur jakatnaka, Surat - 395 005</p>
+            <p style="margin-top: 10px; font-size: 8px; color: #999;">&copy; 2025 Shreeja BioTech. All rights reserved.</p>
+        </div>
+    </div>
+
+    <script>
+        // Visitor Counter
+        window.onload = function() {
+            let count = localStorage.getItem('visitorCount');
+            if (count) {
+                count = parseInt(count) + 1;
+            } else {
+                count = 1;
+            }
+            localStorage.setItem('visitorCount', count);
+            document.getElementById('visitorCount').innerText = count;
+        };
+
+        const feedstockYields = {
+            // Data from feedstocck to gas.jpg (Feedstock Requirement per 1 Ton CBG Production)
+            // CBG Production (Ton) -> Feedstock Requirement (Ton/KL/MLD)
+            // To get rawBiogasM3PerTon, we use the conversion: 1000 m3 raw biogas -> 600 m3 CBG.
+            // Assuming CBG density is approx 0.7 kg/m3, then 600 m3 CBG = 600 * 0.7 = 420 kg CBG = 0.42 tons CBG.
+            // So, 1000 m3 raw biogas yields 0.42 tons CBG.
+            // To produce 1 Ton CBG, we need (1000 / 0.42) = 2380.95 m3 raw biogas.
+            // Therefore, rawBiogasM3PerTon = (2380.95 m3 raw biogas) / (Feedstock Requirement for 1 Ton CBG)
+            "Agriculture Residue": { feedstockFor1TonCBG: 10, unit: "Ton" },
+            "Press Mud": { feedstockFor1TonCBG: 25, unit: "Ton" },
+            "Spent Wash": { feedstockFor1TonCBG: 10, unit: "KL" },
+            "Bagasse": { feedstockFor1TonCBG: 10, unit: "Ton" },
+            "Municipal Solid Waste": { feedstockFor1TonCBG: 20, unit: "Ton" },
+            "Cow Dung": { feedstockFor1TonCBG: 50, unit: "Ton" },
+            "Chicken Litter": { feedstockFor1TonCBG: 25, unit: "Ton" },
+            "Forest Residue": { feedstockFor1TonCBG: 15, unit: "Ton" },
+            "Napier Grass": { feedstockFor1TonCBG: 10, unit: "Ton" },
+            "Sewage Waste": { feedstockFor1TonCBG: 15, unit: "MLD" }
+        };
+
+        // New conversion factors based on user's latest input
+        const RAW_BIOGAS_TO_PURIFIED_CBG_M3_RATIO = 0.6; // 600 m3 Purified BioCNG per 1000 m3 Raw Biogas
+        const CBG_DENSITY_KG_PER_M3 = 0.7; // Approx density of CBG at standard conditions (for calculation)
+        const KG_CO2_PER_1000_M3_RAW_BIOGAS = 400; // 400 kg Liquefied CO2 per 1000 m3 Raw Biogas
+        const CO2_SELLING_PRICE_PER_KG = 10; // INR
+
+        // Financial Constants (per 1000 KG BioCNG output per day)
+        const BASE_PROJECT_COST_PER_1000KG_CBG = 50000000; // INR
+        const BANK_FINANCING_PERCENTAGE = 0.70;
+        const BANK_INTEREST_RATE = 0.095; // 9.5%
+        const FEEDSTOCK_PRICE_PER_TON = 900; // INR
+        const ENERGY_REQUIRED_PER_1000KG_CBG = 100; // KWH
+        const ENERGY_COST_PER_KWH = 8; // INR (Assumed)
+        const ANNUAL_SALARY_COST_PER_1000KG_CBG = 1500000; // INR
+        const ANNUAL_ADDITIONAL_EXPENSE_PER_1000KG_CBG = 400000; // INR
+        const BIOCNG_SELLING_PRICE_PER_KG = 65; // INR
+        const LIQUID_FERTILIZER_PRICE_PER_LITER_OR_KG = 3; // INR
+        const SOLID_FERTILIZER_PRICE_PER_KG = 3; // INR
+        const LIQUID_FERTILIZER_OUTPUT_PER_1000KG_CBG = 7.5; // Tons
+        const SOLID_FERTILIZER_OUTPUT_PER_1000KG_CBG = 15; // Tons
+        const LAND_REQUIRED_PER_1000KG_CBG = 0.6; // Acres
+
+        // Helper to format numbers to Indian Lakh/Crore
+        function formatIndianCurrency(num) {
+            if (num >= 10000000) { // Crore
+                return (num / 10000000).toFixed(2) + ' Crore';
+            } else if (num >= 100000) { // Lakh
+                return (num / 100000).toFixed(2) + ' Lakh';
+            } else {
+                return num.toLocaleString('en-IN');
+            }
+        }
+
+        document.getElementById('feedstockType').addEventListener('change', function() {
+            const mixedSection = document.getElementById('mixedFeedstockSection');
+            const feedstockQuantityInput = document.getElementById('feedstockQuantity');
+            if (this.value === 'Mixed') {
+                mixedSection.classList.remove('hidden');
+                feedstockQuantityInput.removeAttribute('required'); // Quantity is now sum of mixed
+                feedstockQuantityInput.value = ''; // Clear single feedstock quantity
+                feedstockQuantityInput.setAttribute('disabled', 'true'); // Disable single feedstock input
+            } else {
+                mixedSection.classList.add('hidden');
+                feedstockQuantityInput.setAttribute('required', 'true');
+                feedstockQuantityInput.removeAttribute('disabled'); // Enable single feedstock input
+                // Reset mixed feedstock inputs
+                document.querySelectorAll('#mixedFeedstockSection input').forEach(input => input.value = '0');
+            }
+        });
+
+        function calculateProject() {
+            document.getElementById('loader').style.display = 'block';
+            document.getElementById('results').classList.add('hidden');
+            document.getElementById('downloadPdfBtn').style.display = 'none';
+
+            setTimeout(() => { // Simulate a short delay for calculation/loading
+                const feedstockType = document.getElementById('feedstockType').value;
+                let feedstockQuantity = parseFloat(document.getElementById('feedstockQuantity').value);
+                const desiredBioCNGOutput = parseFloat(document.getElementById('desiredBioCNGOutput').value); // Desired output in KG
+
+                if (isNaN(desiredBioCNGOutput) || desiredBioCNGOutput <= 0) {
+                    alert("Please enter a valid desired Bio-CNG output (KG per day).");
+                    document.getElementById('loader').style.display = 'none';
+                    return;
+                }
+
+                // Calculate total raw biogas needed to produce the desiredBioCNGOutput
+                // Desired BioCNG KG / CBG_DENSITY_KG_PER_M3 = Desired BioCNG M3
+                // Desired BioCNG M3 / RAW_BIOGAS_TO_PURIFIED_CBG_M3_RATIO = Raw Biogas M3 Needed
+                const desiredBioCNGM3 = desiredBioCNGOutput / CBG_DENSITY_KG_PER_M3;
+                const rawBiogasM3NeededForDesiredCBG = desiredBioCNGM3 / RAW_BIOGAS_TO_PURIFIED_CBG_M3_RATIO;
+
+                let totalRawBiogasM3PerDay = rawBiogasM3NeededForDesiredCBG; // This is the target raw biogas output
+                let calculatedTotalFeedstockInputTons = 0; // This will be the final calculated total feedstock
+
+                if (feedstockType === 'Mixed') {
+                    let initialRawBiogasFromMixed = 0;
+                    const mixedFeedstockInputs = {}; // Store initial quantities
+
+                    for (const key in feedstockYields) {
+                        const inputId = `mixed_${key.replace(/ /g, '_')}`;
+                        const quantity = parseFloat(document.getElementById(inputId).value) || 0;
+                        mixedFeedstockInputs[key] = quantity; // Store original input
+
+                        if (quantity > 0) {
+                            // Calculate raw biogas yield for 1 ton CBG (approx 2380.95 m3)
+                            const rawBiogasPerTonCBG = 1000 / (RAW_BIOGAS_TO_PURIFIED_CBG_M3_RATIO * CBG_DENSITY_KG_PER_M3);
+                            // Raw biogas per unit of specific feedstock = rawBiogasPerTonCBG / feedstockFor1TonCBG
+                            const rawBiogasPerUnitFeedstock = rawBiogasPerTonCBG / feedstockYields[key].feedstockFor1TonCBG;
+                            initialRawBiogasFromMixed += mixedFeedstockInputs[key] * rawBiogasPerUnitFeedstock;
+                        }
+                    }
+
+                    if (initialRawBiogasFromMixed === 0) {
+                         alert("Please ensure your mixed feedstock inputs can produce biogas.");
+                         document.getElementById('loader').style.display = 'none';
+                         return;
+                    }
+
+                    const scaleFactor = rawBiogasM3NeededForDesiredCBG / initialRawBiogasFromMixed;
+
+                    calculatedTotalFeedstockInputTons = 0; // Reset for scaled sum
+                    for (const key in mixedFeedstockInputs) {
+                        const inputId = `mixed_${key.replace(/ /g, '_')}`;
+                        const originalQuantity = mixedFeedstockInputs[key];
+                        const scaledQuantity = originalQuantity * scaleFactor;
+                        document.getElementById(inputId).value = scaledQuantity.toFixed(2);
+                        calculatedTotalFeedstockInputTons += scaledQuantity;
+                    }
+
+                } else { // Single feedstock type
+                    const feedstockInfo = feedstockYields[feedstockType];
+                    if (!feedstockInfo) {
+                        alert("Invalid feedstock type selected.");
+                        document.getElementById('loader').style.display = 'none';
+                        return;
+                    }
+                    // Raw biogas per unit of specific feedstock = rawBiogasPerTonCBG / feedstockFor1TonCBG
+                    const rawBiogasPerTonCBG = 1000 / (RAW_BIOGAS_TO_PURIFIED_CBG_M3_RATIO * CBG_DENSITY_KG_PER_M3);
+                    const rawBiogasPerUnitFeedstock = rawBiogasPerTonCBG / feedstockInfo.feedstockFor1TonCBG;
+
+                    calculatedFeedstockQuantity = rawBiogasM3NeededForDesiredCBG / rawBiogasPerUnitFeedstock;
+                    calculatedTotalFeedstockInputTons = calculatedFeedstockQuantity;
+                    document.getElementById('feedstockQuantity').value = calculatedFeedstockQuantity.toFixed(2);
+                }
+
+                const waterRequired = (calculatedTotalFeedstockInputTons * 0.20); // 20% of total feedstock
+                const dailyInputVolume = calculatedTotalFeedstockInputTons + waterRequired; // Assuming 1 ton ~ 1 m3 for solids/water
+                const perDayDigesterVolume = dailyInputVolume;
+                const grossDigesterVolume = perDayDigesterVolume * 30 * 1.25; // 30 days retention, 25% buffer
+
+                // Liquefied CO2 Production
+                const liquefiedCO2Production = (totalRawBiogasM3PerDay / 1000) * KG_CO2_PER_1000_M3_RAW_BIOGAS;
+
+                // Land Area Calculation
+                const landAreaRequired = (desiredBioCNGOutput / 1000) * LAND_REQUIRED_PER_1000KG_CBG;
+
+                // Financial Calculations
+                const totalProjectCost = (desiredBioCNGOutput / 1000) * BASE_PROJECT_COST_PER_1000KG_CBG;
+                const bankLoan = totalProjectCost * BANK_FINANCING_PERCENTAGE;
+                const annualInterest = bankLoan * BANK_INTEREST_RATE; // Simple annual interest
+
+                // Annual Operational Costs
+                const annualFeedstockCost = calculatedTotalFeedstockInputTons * 365 * FEEDSTOCK_PRICE_PER_TON;
+                const annualEnergyCost = (desiredBioCNGOutput / 1000) * ENERGY_REQUIRED_PER_1000KG_CBG * ENERGY_COST_PER_KWH * 365;
+                const annualSalaryCost = (desiredBioCNGOutput / 1000) * ANNUAL_SALARY_COST_PER_1000KG_CBG;
+                const annualAdditionalExpense = (desiredBioCNGOutput / 1000) * ANNUAL_ADDITIONAL_EXPENSE_PER_1000KG_CBG;
+                const totalAnnualOperationalCost = annualFeedstockCost + annualEnergyCost + annualSalaryCost + annualAdditionalExpense;
+
+                // Annual Revenue
+                const bioCNGSalesRevenue = desiredBioCNGOutput * 365 * BIOCNG_SELLING_PRICE_PER_KG;
+                const liquidFertilizerRevenue = (desiredBioCNGOutput / 1000) * LIQUID_FERTILIZER_OUTPUT_PER_1000KG_CBG * 1000 * LIQUID_FERTILIZER_PRICE_PER_LITER_OR_KG * 365; // Assuming 1 liter = 1 kg
+                const solidFertilizerRevenue = (desiredBioCNGOutput / 1000) * SOLID_FERTILIZER_OUTPUT_PER_1000KG_CBG * 1000 * SOLID_FERTILIZER_PRICE_PER_KG * 365;
+                const liquefiedCO2Revenue = liquefiedCO2Production * 365 * CO2_SELLING_PRICE_PER_KG;
+                const totalAnnualRevenue = bioCNGSalesRevenue + liquidFertilizerRevenue + solidFertilizerRevenue + liquefiedCO2Revenue;
+
+                const annualNetProfit = totalAnnualRevenue - totalAnnualOperationalCost - annualInterest;
+
+
+                // Display Results
+                document.getElementById('totalFeedstock').innerText = calculatedTotalFeedstockInputTons.toFixed(2);
+                document.getElementById('waterRequired').innerText = waterRequired.toFixed(2);
+                document.getElementById('dailyInputVolume').innerText = dailyInputVolume.toFixed(2);
+                document.getElementById('rawBiogasProduction').innerText = totalRawBiogasM3PerDay.toFixed(2);
+                document.getElementById('purifiedBioCNGProduction').innerText = desiredBioCNGOutput.toFixed(2);
+                document.getElementById('liquefiedCO2Production').innerText = liquefiedCO2Production.toFixed(2);
+
+                document.getElementById('perDayDigesterVolume').innerText = perDayDigesterVolume.toFixed(2);
+                document.getElementById('grossDigesterVolume').innerText = grossDigesterVolume.toFixed(2);
+
+                document.getElementById('landAreaRequired').innerText = landAreaRequired.toFixed(2);
+
+                document.getElementById('totalProjectCost').innerText = formatIndianCurrency(totalProjectCost);
+                document.getElementById('bankLoan').innerText = formatIndianCurrency(bankLoan);
+                document.getElementById('annualInterest').innerText = formatIndianCurrency(annualInterest);
+                document.getElementById('annualFeedstockCost').innerText = formatIndianCurrency(annualFeedstockCost);
+                document.getElementById('annualEnergyCost').innerText = formatIndianCurrency(annualEnergyCost);
+                document.getElementById('annualSalaryCost').innerText = formatIndianCurrency(annualSalaryCost);
+                document.getElementById('annualAdditionalExpense').innerText = formatIndianCurrency(annualAdditionalExpense);
+                document.getElementById('totalAnnualOperationalCost').innerText = formatIndianCurrency(totalAnnualOperationalCost);
+                document.getElementById('bioCNGSalesRevenue').innerText = formatIndianCurrency(bioCNGSalesRevenue);
+                document.getElementById('liquidFertilizerRevenue').innerText = formatIndianCurrency(liquidFertilizerRevenue);
+                document.getElementById('solidFertilizerRevenue').innerText = formatIndianCurrency(solidFertilizerRevenue);
+                document.getElementById('liquefiedCO2Revenue').innerText = formatIndianCurrency(liquefiedCO2Revenue);
+                document.getElementById('totalAnnualRevenue').innerText = formatIndianCurrency(totalAnnualRevenue);
+                document.getElementById('annualNetProfit').innerText = formatIndianCurrency(annualNetProfit);
+
+                // Update PDF content (tables)
+                document.getElementById('pdf_totalFeedstock').innerText = calculatedTotalFeedstockInputTons.toFixed(2);
+                document.getElementById('pdf_waterRequired').innerText = waterRequired.toFixed(2);
+                document.getElementById('pdf_dailyInputVolume').innerText = dailyInputVolume.toFixed(2);
+                document.getElementById('pdf_rawBiogasProduction').innerText = totalRawBiogasM3PerDay.toFixed(2);
+                document.getElementById('pdf_purifiedBioCNGProduction').innerText = desiredBioCNGOutput.toFixed(2);
+                document.getElementById('pdf_liquefiedCO2Production').innerText = liquefiedCO2Production.toFixed(2);
+                document.getElementById('pdf_perDayDigesterVolume').innerText = perDayDigesterVolume.toFixed(2);
+                document.getElementById('pdf_grossDigesterVolume').innerText = grossDigesterVolume.toFixed(2);
+                document.getElementById('pdf_landAreaRequired').innerText = landAreaRequired.toFixed(2);
+
+                document.getElementById('pdf_totalProjectCost').innerText = formatIndianCurrency(totalProjectCost);
+                document.getElementById('pdf_bankLoan').innerText = formatIndianCurrency(bankLoan);
+                document.getElementById('pdf_annualInterest').innerText = formatIndianCurrency(annualInterest);
+                document.getElementById('pdf_annualFeedstockCost').innerText = formatIndianCurrency(annualFeedstockCost);
+                document.getElementById('pdf_annualEnergyCost').innerText = formatIndianCurrency(annualEnergyCost);
+                document.getElementById('pdf_annualSalaryCost').innerText = formatIndianCurrency(annualSalaryCost);
+                document.getElementById('pdf_annualAdditionalExpense').innerText = formatIndianCurrency(annualAdditionalExpense);
+                document.getElementById('pdf_totalAnnualOperationalCost').innerText = formatIndianCurrency(totalAnnualOperationalCost);
+                document.getElementById('pdf_bioCNGSalesRevenue').innerText = formatIndianCurrency(bioCNGSalesRevenue);
+                document.getElementById('pdf_liquidFertilizerRevenue').innerText = formatIndianCurrency(liquidFertilizerRevenue);
+                document.getElementById('pdf_solidFertilizerRevenue').innerText = formatIndianCurrency(solidFertilizerRevenue);
+                document.getElementById('pdf_liquefiedCO2Revenue').innerText = formatIndianCurrency(liquefiedCO2Revenue);
+                document.getElementById('pdf_totalAnnualRevenue').innerText = formatIndianCurrency(totalAnnualRevenue);
+                document.getElementById('pdf_annualNetProfit').innerText = formatIndianCurrency(annualNetProfit);
+
+
+                document.getElementById('loader').style.display = 'none';
+                document.getElementById('results').classList.remove('hidden');
+                document.getElementById('downloadPdfBtn').style.display = 'inline-block';
+
+                // Scroll to results
+                document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+
+            }, 500); // Small delay to show loader
+        }
+
+        async function downloadPdf() {
+            const pdfContent = document.getElementById('pdfContent');
+            pdfContent.style.left = '0'; // Make visible for rendering
+
+            // Temporarily hide the watermark on the main page to avoid it being captured twice
+            const mainWatermark = document.querySelector('.shreeja-watermark');
+            mainWatermark.style.display = 'none';
+
+            // Load the logo image first
+            const logoImg = new Image();
+            logoImg.src = 'Shreeja_LOGO.png';
+            let logoLoaded = false;
+
+            await new Promise((resolve) => {
+                logoImg.onload = () => {
+                    logoLoaded = true;
+                    resolve();
+                };
+                logoImg.onerror = () => {
+                    console.error("Failed to load Shreeja_LOGO.png for PDF watermark.");
+                    resolve(); // Resolve even on error to not block PDF generation
+                };
+            });
+
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF('p', 'mm', 'a4'); // Portrait, millimeters, A4 size
+
+            const pageMargin = 7.62; // 0.3 inches in mm
+            const a4Width = doc.internal.pageSize.getWidth();
+            const a4Height = doc.internal.pageSize.getHeight();
+            const contentWidth = a4Width - (2 * pageMargin);
+            const contentHeight = a4Height - (2 * pageMargin);
+
+            let yOffset = pageMargin; // Initial Y offset for content, respecting top margin
+
+            // Function to add content to PDF and handle page breaks
+            const addContentToPdf = async (element, doc, yStart) => {
+                const canvas = await html2canvas(element, { scale: 2, useCORS: true, logging: false });
+                const imgData = canvas.toDataURL('image/png');
+                const imgProps = doc.getImageProperties(imgData);
+                let imgHeight = (imgProps.height * contentWidth) / imgProps.width;
+
+                const availableHeight = a4Height - yStart - pageMargin; // Space left on current page
+
+                if (imgHeight > availableHeight) {
+                    doc.addPage();
+                    yOffset = pageMargin; // Reset yOffset for new page, respecting top margin
+                    // Add header to new page (re-add header on new page after page break)
+                    const headerCanvas = await html2canvas(document.querySelector('.pdf-header'), { scale: 2, useCORS: true, logging: false });
+                    const headerImgData = headerCanvas.toDataURL('image/png');
+                    const headerImgProps = doc.getImageProperties(headerImgData);
+                    const headerImgHeight = (headerImgProps.height * contentWidth) / headerImgProps.width;
+                    doc.addImage(headerImgData, 'PNG', pageMargin, yOffset, contentWidth, headerImgHeight);
+                    yOffset += headerImgHeight + 5; // Space after header
+                }
+                doc.addImage(imgData, 'PNG', pageMargin, yOffset, contentWidth, imgHeight);
+                yOffset += imgHeight + 10; // Space after content
+            };
+
+            // Add each section from the hidden PDF content div
+            const sections = pdfContent.querySelectorAll('.pdf-header, .pdf-section, .pdf-contact-info');
+            for (const section of sections) {
+                if (section.classList.contains('pdf-page-break')) {
+                    doc.addPage();
+                    yOffset = pageMargin; // Reset yOffset for new page, respecting top margin
+                    // Add header to new page (re-add header on new page after page break)
+                    const headerCanvas = await html2canvas(document.querySelector('.pdf-header'), { scale: 2, useCORS: true, logging: false });
+                    const headerImgData = headerCanvas.toDataURL('image/png');
+                    const headerImgProps = doc.getImageProperties(headerImgData);
+                    const headerImgHeight = (headerImgProps.height * contentWidth) / headerImgProps.width;
+                    doc.addImage(headerImgData, 'PNG', pageMargin, yOffset, contentWidth, headerImgHeight);
+                    yOffset += headerImgHeight + 5; // Space after header
+                    continue;
+                }
+                await addContentToPdf(section, doc, yOffset);
+            }
+
+            // Add border and watermark to each page AFTER all content has been added
+            const totalPages = doc.internal.getNumberOfPages();
+            for (let i = 1; i <= totalPages; i++) {
+                doc.setPage(i);
+
+                // Draw the borders
+                doc.setDrawColor(56, 161, 105); // Green color (Tailwind #38a169)
+                doc.setLineWidth(1.5); // Outer green border thickness
+                doc.rect(pageMargin, pageMargin, contentWidth, contentHeight); // Outer rectangle
+
+                doc.setDrawColor(246, 173, 85); // Orange color (Tailwind #f6ad55)
+                doc.setLineWidth(0.8); // Inner orange border thickness
+                // Adjust inner rectangle slightly inwards from the green border
+                doc.rect(pageMargin + 1.5, pageMargin + 1.5, contentWidth - 3, contentHeight - 3);
+
+                // Add watermark
+                if (logoLoaded) { // Only add watermark if logo loaded successfully
+                    doc.setGState(new jsPDF.GState({ opacity: 0.1 })); // Set opacity for watermark
+                    // Position watermark relative to page, considering margins
+                    doc.addImage(logoImg, 'PNG', a4Width - pageMargin - 50, a4Height - pageMargin - 50, 50, 50);
+                    doc.setGState(new jsPDF.GState({ opacity: 1 })); // Reset opacity
+                }
+            }
+
+            // Save the PDF
+            doc.save('Shreeja_BioCNG_Feasibility_Report.pdf');
+
+            // Restore visibility and watermark on main page
+            pdfContent.style.left = '-9999px';
+            mainWatermark.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

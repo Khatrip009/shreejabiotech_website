@@ -1,0 +1,1287 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta name="description" content="Discover how Shreeja Biotech transforms biogas digestate into organic fertilizers, improving soil health and reducing environmental impact.">
+
+  <title>
+   Organic Fertilizers from Biogas Digestate | Sustainable Agriculture Solutions
+  </title>
+  <link href="../css/services.css" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&amp;family=Open+Sans:wght@300;400;600&amp;display=swap" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js">
+  </script>
+  <style>
+   :root {
+            --primary: #2e7d32;
+            --primary-dark: #1b5e20;
+            --secondary: #ff9800;
+            --light: #f5f5f5;
+            --dark: #333;
+            --gray: #757575;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+            background-color: #fafafa;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--secondary);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1625246333195-78d9c38ad449?ixlib=rb-4.0.3') no-repeat center center/cover;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .btn:hover {
+            background-color: #e68a00;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+        }
+        
+        /* Section Styles */
+        section {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary);
+            border-radius: 2px;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Introduction Section */
+        .intro-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+        
+        .intro-text {
+            flex: 1;
+        }
+        
+        .intro-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .intro-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Feedstock Section */
+        .feedstock-section {
+            background-color: #e8f5e9;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feedstock-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .feedstock-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            height: 100%;
+        }
+        
+        .feedstock-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .feedstock-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .feedstock-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .feedstock-card:hover .feedstock-image img {
+            transform: scale(1.1);
+        }
+        
+        .feedstock-content {
+            padding: 1.5rem;
+        }
+        
+        .feedstock-content h3 {
+            margin-bottom: 0.8rem;
+            color: var(--primary);
+        }
+        
+        .feedstock-content p {
+            margin-bottom: 1rem;
+            color: var(--gray);
+        }
+        
+        .feedstock-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+        
+        /* Comparison Section */
+        .comparison-container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            overflow: hidden;
+            margin-top: 3rem;
+        }
+        
+        .chart-container {
+            padding: 2rem;
+            height: 400px;
+        }
+        
+        /* Waste Management Section */
+        .waste-management {
+            background-color: #f1f8e9;
+        }
+        
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .stat-card i {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .stat-card h3 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-dark);
+        }
+        
+        /* Process Flow Section */
+        .process-flow {
+            position: relative;
+            padding: 4rem 0;
+        }
+        
+        .process-container {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin-top: 3rem;
+        }
+        
+        .process-container::before {
+            content: '';
+            position: absolute;
+            top: 60px;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background-color: var(--primary);
+            z-index: 1;
+        }
+        
+        .process-step {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            width: 16%;
+        }
+        
+        .step-icon {
+            width: 120px;
+            height: 120px;
+            background: white;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 4px solid var(--primary);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+        
+        .step-icon:hover {
+            transform: scale(1.1);
+            background-color: var(--primary);
+        }
+        
+        .step-icon:hover i {
+            color: white;
+        }
+        
+        .step-icon i {
+            font-size: 3rem;
+            color: var(--primary);
+            transition: all 0.3s;
+        }
+        
+        .step-content h3 {
+            margin-bottom: 0.8rem;
+        }
+        
+        /* Benefits Section */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .benefit-card {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+            text-align: center;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .benefit-icon {
+            width: 80px;
+            height: 80px;
+            background-color: #e8f5e9;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .benefit-icon i {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary-dark);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .social-icon:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+        
+        .animated {
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        .delay-1 {
+            animation-delay: 0.2s;
+        }
+        
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+        
+        .delay-3 {
+            animation-delay: 0.6s;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .intro-content {
+                flex-direction: column;
+            }
+            
+            .process-container {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .process-step {
+                width: 45%;
+                margin-bottom: 2rem;
+            }
+            
+            .process-container::before {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+            }
+            
+            .nav-links {
+                margin-top: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .nav-links li {
+                margin: 0.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .process-step {
+                width: 100%;
+            }
+        }
+.logo img {
+  height: 50px;
+}
+
+.logo-text h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.logo-text span {
+  color: #28a745; /* or your brand color */
+}
+  </style>
+ </head>
+ <body>
+<!-- Header -->
+<header>
+  <div class="container">
+    <nav class="navbar">
+
+      <!-- Logo Section -->
+      <div class="logo" style="display: flex; align-items: center; gap: 10px;">
+        <a href="index.html">
+          <img src="Shreeja_LOGO.png" alt="Shreeja Biotech Logo" style="height: 50px;">
+        </a>
+        <div class="logo-text">
+          <h1 style="margin: 0;">
+            SHREEJA <span style="color: #28a745;">BIO-TECH</span>
+          </h1>
+        </div>
+      </div>
+
+      <!-- Navigation Links -->
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="bio-cng.html">Bio-CNG</a></li>
+        <li><a class="active" href="fertilizers.html">Fertilizers</a></li>
+        <li><a href="turnkey.html">Turnkey Projects</a></li>
+        <li><a href="consulting.html">Consulting</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+
+    </nav>
+  </div>
+</header>
+
+
+  <!-- Hero Section -->
+  <section class="hero">
+   <div class="hero-content">
+    <h1>
+     Organic Fertilizers from Biogas Digestate
+    </h1>
+    <p>
+     Transforming agricultural waste into nutrient-rich fertilizers for sustainable farming
+    </p>
+    <a class="btn" href="#benefits">
+     Discover Benefits
+    </a>
+   </div>
+  </section>
+  <!-- Introduction Section -->
+  <section id="introduction">
+   <div class="container">
+    <div class="section-title">
+     <h2>
+      Revolutionizing Agriculture with Bio-Fertilizers
+     </h2>
+    </div>
+    <div class="section-subtitle">
+     <p>
+      Biogas digestate is a nutrient-rich byproduct of anaerobic digestion that offers a sustainable alternative to chemical fertilizers, improving soil health while reducing environmental impact.
+     </p>
+    </div>
+    <div class="intro-content">
+     <div class="intro-text animated">
+      <h3>
+       The Digestate Advantage
+      </h3>
+      <p>
+       Digestate is the residual material left after the anaerobic digestion of organic matter to produce biogas. This valuable byproduct contains essential plant nutrients including nitrogen, phosphorus, potassium, and micronutrients, making it an excellent organic fertilizer.
+      </p>
+      <p>
+       Unlike chemical fertilizers, digestate improves soil structure, increases water retention capacity, and enhances microbial activity. It also helps in carbon sequestration, reducing the carbon footprint of agricultural practices.
+      </p>
+      <p>
+       Our advanced processing techniques transform raw digestate into easy-to-apply, nutrient-balanced fertilizers that meet the specific needs of different crops and soil types.
+      </p>
+     </div>
+     <div class="intro-image animated delay-1">
+  <img alt="Organic Fertilizer Application" src="images/fertilizer01.jpg" />
+</div>
+    </div>
+   </div>
+  </section>
+  <!-- Feedstock Section -->
+  <section class="feedstock-section">
+   <div class="container">
+    <div class="section-title">
+     <h2>
+      Optimal Feedstock Selection for Quality Fertilizers
+     </h2>
+    </div>
+    <div class="section-subtitle">
+     <p>
+      The quality of digestate-based fertilizers depends significantly on the feedstock used in biogas production. Careful selection ensures balanced nutrients and soil benefits.
+     </p>
+    </div>
+    <div class="feedstock-grid">
+     <div class="feedstock-card animated">
+      <div class="feedstock-image">
+       <img alt="Animal Manure" src="images/fertilizer02.jpg">
+      </div>
+      <div class="feedstock-content">
+       <h3>
+        Animal Manure
+       </h3>
+       <p>
+        Cattle, poultry, and swine manure provide balanced nutrients with high nitrogen content. Excellent for improving soil structure and microbial activity.
+       </p>
+       <div class="feedstock-stats">
+        <div class="stat-item">
+         <div class="stat-value">
+          1.8-2.5%
+         </div>
+         <div class="stat-label">
+          Nitrogen
+         </div>
+        </div>
+        <div class="stat-item">
+         <div class="stat-value">
+          1.0-1.5%
+         </div>
+         <div class="stat-label">
+          Phosphorus
+         </div>
+        </div>
+        <div class="stat-item">
+         <div class="stat-value">
+          1.5-2.5%
+         </div>
+         <div class="stat-label">
+          Potassium
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="feedstock-card animated delay-1">
+      <div class="feedstock-image">
+       <img alt="Crop Residues" src=images/fertilizer03.jpg>
+      </div>
+      <div class="feedstock-content">
+       <h3>
+        Crop Residues
+       </h3>
+       <p>
+        Straw, stalks, and other agricultural waste provide carbon-rich material that enhances soil organic matter and water retention capacity.
+       </p>
+       <div class="feedstock-stats">
+        <div class="stat-item">
+         <div class="stat-value">
+          0.5-1.0%
+         </div>
+         <div class="stat-label">
+          Nitrogen
+         </div>
+        </div>
+        <div class="stat-item">
+         <div class="stat-value">
+          0.2-0.5%
+         </div>
+         <div class="stat-label">
+          Phosphorus
+         </div>
+        </div>
+        <div class="stat-item">
+         <div class="stat-value">
+          1.0-2.0%
+         </div>
+         <div class="stat-label">
+          Potassium
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="feedstock-card animated delay-2">
+      <div class="feedstock-image">
+       <img alt="Food Waste" src=images/fertilizer04.jpg>
+      </div>
+      <div class="feedstock-content">
+       <h3>
+        Food Waste
+       </h3>
+       <p>
+        High-energy feedstock that produces digestate rich in micronutrients. Excellent for vegetable gardens and horticultural applications.
+       </p>
+       <div class="feedstock-stats">
+        <div class="stat-item">
+         <div class="stat-value">
+          2.0-3.5%
+         </div>
+         <div class="stat-label">
+          Nitrogen
+         </div>
+        </div>
+        <div class="stat-item">
+         <div class="stat-value">
+          0.5-1.0%
+         </div>
+         <div class="stat-label">
+          Phosphorus
+         </div>
+        </div>
+        <div class="stat-item">
+         <div class="stat-value">
+          1.8-2.5%
+         </div>
+         <div class="stat-label">
+          Potassium
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section>
+  <!-- Nutrient Comparison Section -->
+  <section>
+   <div class="container">
+    <div class="section-title">
+     <h2>
+      Nutrient Profile Comparison
+     </h2>
+    </div>
+    <div class="section-subtitle">
+     <p>
+      Digestate fertilizers provide a balanced nutrient profile compared to conventional chemical fertilizers.
+     </p>
+    </div>
+    <div class="comparison-container">
+     <div class="chart-container">
+      <canvas id="nutrientChart">
+      </canvas>
+     </div>
+    </div>
+   </div>
+  </section>
+  <!-- Waste Management Section -->
+  <section class="waste-management">
+   <div class="container">
+    <div class="section-title">
+     <h2>
+      Waste Management: Global &amp; Indian Perspectives
+     </h2>
+    </div>
+    <div class="section-subtitle">
+     <p>
+      Effective waste management is critical for sustainable development. Biogas technology transforms waste into valuable resources.
+     </p>
+    </div>
+    <div class="stats-container">
+     <div class="stat-card animated">
+      <i class="fas fa-globe-asia">
+      </i>
+      <h3>
+       2.01 Billion Tons
+      </h3>
+      <p>
+       Global municipal solid waste generated annually
+      </p>
+     </div>
+     <div class="stat-card animated delay-1">
+      <i class="fas fa-trash">
+      </i>
+      <h3>
+       62 Million Tons
+      </h3>
+      <p>
+       Annual waste generated in India (2023)
+      </p>
+     </div>
+     <div class="stat-card animated delay-2">
+      <i class="fas fa-recycle">
+      </i>
+      <h3>
+       30%
+      </h3>
+      <p>
+       Potential waste that could be used for biogas production
+      </p>
+     </div>
+     <div class="stat-card animated delay-3">
+      <i class="fas fa-seedling">
+      </i>
+      <h3>
+       12 Million Tons
+      </h3>
+      <p>
+       Annual production potential of organic fertilizer from waste in India
+      </p>
+     </div>
+    </div>
+    <div class="section-subtitle">
+     <h3>
+      Challenges and Opportunities in Waste Management
+     </h3>
+     <p>
+      India faces significant waste management challenges with approximately 75% of waste being dumped in landfills without treatment. However, this presents a tremendous opportunity for biogas projects that can convert this waste into clean energy and organic fertilizers.
+     </p>
+     <p>
+      Globally, countries like Germany and Sweden lead in waste-to-energy conversion, with over 60% of municipal waste being processed through anaerobic digestion. India has the potential to replicate these models with its abundant agricultural and organic waste resources.
+     </p>
+    </div>
+   </div>
+  </section>
+  <!-- Process Flow Section -->
+  <section class="process-flow">
+   <div class="container">
+    <div class="section-title">
+     <h2>
+      From Waste to Fertilizer: Our Process
+     </h2>
+    </div>
+    <div class="section-subtitle">
+     <p>
+      Our integrated approach transforms organic waste into high-quality bio-fertilizers through a controlled, efficient process.
+     </p>
+    </div>
+    <div class="process-container">
+     <div class="process-step animated">
+      <div class="step-icon">
+       <i class="fas fa-trash-alt">
+       </i>
+      </div>
+      <div class="step-content">
+       <h3>
+        Waste Collection
+       </h3>
+       <p>
+        Organic waste sourced from farms, food processing, and municipalities
+       </p>
+      </div>
+     </div>
+     <div class="process-step animated delay-1">
+      <div class="step-icon">
+       <i class="fas fa-blender">
+       </i>
+      </div>
+      <div class="step-content">
+       <h3>
+        Pre-treatment
+       </h3>
+       <p>
+        Shredding, sorting, and preparing feedstock for digestion
+       </p>
+      </div>
+     </div>
+     <div class="process-step animated delay-2">
+      <div class="step-icon">
+       <i class="fas fa-flask">
+       </i>
+      </div>
+      <div class="step-content">
+       <h3>
+        Anaerobic Digestion
+       </h3>
+       <p>
+        Microbial breakdown in oxygen-free digesters producing biogas
+       </p>
+      </div>
+     </div>
+     <div class="process-step animated delay-1">
+      <div class="step-icon">
+       <i class="fas fa-gas-pump">
+       </i>
+      </div>
+      <div class="step-content">
+       <h3>
+        Biogas Extraction
+       </h3>
+       <p>
+        Collection and purification of methane-rich biogas
+       </p>
+      </div>
+     </div>
+     <div class="process-step animated">
+      <div class="step-icon">
+       <i class="fas fa-tint">
+       </i>
+      </div>
+      <div class="step-content">
+       <h3>
+        Digestate Processing
+       </h3>
+       <p>
+        Solid-liquid separation and nutrient stabilization
+       </p>
+      </div>
+     </div>
+     <div class="process-step animated delay-1">
+      <div class="step-icon">
+       <i class="fas fa-spa">
+       </i>
+      </div>
+      <div class="step-content">
+       <h3>
+        Fertilizer Production
+       </h3>
+       <p>
+        Formulating digestate into pellets, liquids, or soil conditioners
+       </p>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section>
+  <!-- Benefits Section -->
+  <section id="benefits">
+   <div class="container">
+    <div class="section-title">
+     <h2>
+      Benefits of Digestate Fertilizers
+     </h2>
+    </div>
+    <div class="benefits-grid">
+     <div class="benefit-card animated">
+      <div class="benefit-icon">
+       <i class="fas fa-tree">
+       </i>
+      </div>
+      <h3>
+       Soil Health Improvement
+      </h3>
+      <p>
+       Enhances soil structure, water retention, and microbial activity for long-term fertility
+      </p>
+     </div>
+     <div class="benefit-card animated delay-1">
+      <div class="benefit-icon">
+       <i class="fas fa-water">
+       </i>
+      </div>
+      <h3>
+       Reduced Water Pollution
+      </h3>
+      <p>
+       Minimizes nutrient runoff compared to chemical fertilizers, protecting waterways
+      </p>
+     </div>
+     <div class="benefit-card animated delay-2">
+      <div class="benefit-icon">
+       <i class="fas fa-coins">
+       </i>
+      </div>
+      <h3>
+       Cost-Effective Solution
+      </h3>
+      <p>
+       Reduces fertilizer costs by 30-50% while utilizing waste resources
+      </p>
+     </div>
+     <div class="benefit-card animated delay-1">
+      <div class="benefit-icon">
+       <i class="fas fa-cloud">
+       </i>
+      </div>
+      <h3>
+       Carbon Sequestration
+      </h3>
+      <p>
+       Adds stable organic carbon to soil, reducing atmospheric CO2
+      </p>
+     </div>
+     <div class="benefit-card animated">
+      <div class="benefit-icon">
+       <i class="fas fa-recycle">
+       </i>
+      </div>
+      <h3>
+       Circular Economy
+      </h3>
+      <p>
+       Closes nutrient loops by returning organic matter to agricultural systems
+      </p>
+     </div>
+     <div class="benefit-card animated delay-1">
+      <div class="benefit-icon">
+       <i class="fas fa-seedling">
+       </i>
+      </div>
+      <h3>
+       Improved Crop Quality
+      </h3>
+      <p>
+       Enhances nutritional value and shelf-life of agricultural produce
+      </p>
+     </div>
+    </div>
+   </div>
+  </section>
+  <!-- Footer -->
+  <footer>
+   <div class="container">
+    <div class="footer-content">
+     <div class="footer-column">
+      <h3>
+       EcoSolutions
+      </h3>
+      <p>
+       Transforming waste into resources for a sustainable future through innovative biogas and fertilizer solutions.
+      </p>
+      
+     </div>
+     <div class="footer-column">
+      <h3>
+       Our Services
+      </h3>
+      <ul class="footer-links">
+       <li>
+        <a href="bio-cng.html">
+         Bio-CNG Production
+        </a>
+       </li>
+       <li>
+        <a href="fertilizers.html">
+         Organic Fertilizers
+        </a>
+       </li>
+       <li>
+        <a href="turnkey.html">
+         Turnkey Projects
+        </a>
+       </li>
+       <li>
+        <a href="consulting.html">
+         Consulting Services
+        </a>
+       </li>
+       <li>
+        <a href="carbon-credit.html">
+         Carbon Credit Solutions
+        </a>
+       </li>
+      </ul>
+     </div>
+    
+     <div class="footer-column">
+      <h3>
+       Contact Us
+      </h3>
+      <p>
+       <i class="fas fa-map-marker-alt">
+       </i>
+       372, V-Square, Palanpur Jakatnaka, Surat - 395005
+      </p>
+      <p>
+       <i class="fas fa-phone">
+       </i>
+       +91 70697 85900
+      </p>
+      <p>
+       <i class="fas fa-envelope">
+       </i>
+       info@shreejabiotech.shop
+      </p>
+     </div>
+    </div>
+    <div class="copyright">
+     <p>
+      © 2025 Shreeja Biotech. All Rights Reserved. 
+      
+     </p>
+    </div>
+   </div>
+  </footer>
+  <script>
+   // Initialize Chart.js
+        document.addEventListener('DOMContentLoaded', function() {
+            // Nutrient Comparison Chart
+            const ctx = document.getElementById('nutrientChart').getContext('2d');
+            const nutrientChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Nitrogen (N)', 'Phosphorus (P)', 'Potassium (K)', 'Organic Matter'],
+                    datasets: [
+                        {
+                            label: 'Digestate Fertilizer',
+                            data: [2.5, 1.2, 2.0, 25],
+                            backgroundColor: 'rgba(46, 125, 50, 0.7)',
+                            borderColor: 'rgba(46, 125, 50, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Chemical Fertilizer',
+                            data: [4.0, 3.5, 3.0, 0],
+                            backgroundColor: 'rgba(255, 152, 0, 0.7)',
+                            borderColor: 'rgba(255, 152, 0, 1)',
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Content (%)'
+                            }
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Nutrient Content Comparison (Average Values)',
+                            font: {
+                                size: 18
+                            }
+                        },
+                        legend: {
+                            position: 'top',
+                        }
+                    }
+                }
+            });
+            
+            // Animation on scroll
+            const animatedElements = document.querySelectorAll('.animated');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.visibility = 'visible';
+                        entry.target.style.animationPlayState = 'running';
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            animatedElements.forEach(el => {
+                el.style.visibility = 'hidden';
+                observer.observe(el);
+            });
+        });
+  </script>
+ </body>
+</html>
