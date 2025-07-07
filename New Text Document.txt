@@ -1,0 +1,32 @@
+website 
+|
+|---- assets
+|---- css
+	|-- animations.css
+	|-- responsive.css
+	|-- style.css
+|---- documents
+	|-- brochures
+	|	|-- project-brochure.pdf
+	|-- certifications
+	|-- company profile.pdf
+|---- images
+	|-- diagrams
+	|-- icons
+	|-- projects
+	|-- team
+	|-- gobardhan.jpg
+	|-- plant-process.jpg
+	|-- shreeja_logo.png
+	|-- shreeja-corporate.jpg
+	|-- team-photo.jpg
+|---- js
+	|-- main.js
+|---- about.html
+|---- contact.html
+|---- index.html
+|---- services.html
+|----- technology.html
+|
+|
+|

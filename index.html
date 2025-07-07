@@ -1,0 +1,1467 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta property="og:title" content="Shreeja Biotech – Bio-CNG Solutions"/>
+<meta name="description" content="Shreeja Biotech offers innovative Bio-CNG, biogas, and waste-to-energy solutions across India and beyond.">
+<meta name="author" content="Shreeja Biotech">
+<meta name="robots" content="index, follow">
+<meta property="og:image" content="images/Shreeja_LOGO.png"/>
+<meta property="og:title" content="Shreeja Biotech – Bio-CNG Experts">
+<meta property="og:description" content="Renewable energy solutions, biogas, and turnkey Bio-CNG plant consulting by Shreeja Biotech.">
+<meta property="og:image" content="images/Shreeja_LOGO.png">
+<meta property="og:url" content="https://shreejabiotech.shop">
+<meta property="og:type" content="website">
+<link rel="icon" href="images/favicon.ico" type="image/x-icon">
+
+
+  <title>
+   Shreeja Biotech | Powering Tomorrow, Naturally
+  </title>
+  <meta content="Leading Bio-CNG production from organic waste. Renewable energy solutions for a sustainable future." name="description"/>
+  <meta content="Bio-CNG, renewable energy, biogas, waste-to-energy, sustainable solutions, Gujarat" name="keywords"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&amp;family=Roboto:wght@300;400;500&amp;display=swap" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js">
+  </script>
+  <!-- Assuming these CSS files are in the same directory or accessible -->
+  <link href="style_updated.css" rel="stylesheet"/>
+  <link href="shape_style.css" rel="stylesheet"/>
+  <link href="style_final.css" rel="stylesheet"/>
+  <style>
+    /* Add or adjust CSS for mobile navigation here if not already in external files */
+    header .container nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex; /* Default for desktop */
+    }
+
+    @media (max-width: 768px) {
+        header .container nav ul {
+            display: none; /* Hide by default on mobile */
+            flex-direction: column;
+            width: 100%;
+            position: absolute;
+            top: 100px; /* Adjust based on your header height */
+            left: 0;
+            background-color: #ffffff; /* Or your header background */
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        header .container nav ul.active {
+            display: flex; /* Show when active */
+        }
+        header .container nav ul li {
+            text-align: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        header .container nav ul li:last-child {
+            border-bottom: none;
+        }
+        .mobile-toggle {
+            display: block; /* Show toggle button on mobile */
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+    }
+    /* Styles for Modals (Inquiry and Investor Form) */
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 10000; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
+        padding-top: 60px;
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: 5% auto; /* 5% from the top and centered */
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%; /* Could be more or less, depending on screen size */
+        max-width: 500px;
+        border-radius: 10px;
+        position: relative;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+        animation-name: animatetop;
+        animation-duration: 0.4s
+    }
+
+    /* Add Animation */
+    @keyframes animatetop {
+        from {top: -300px; opacity: 0}
+        to {top: 0; opacity: 1}
+    }
+
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        position: absolute;
+        right: 15px;
+        top: 10px;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .modal-content h2 {
+        margin-top: 0;
+        color: #38a169;
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+    }
+
+    .modal-content .form-group,
+    .modal-content input,
+    .modal-content textarea,
+    .modal-content select {
+        margin-bottom: 15px;
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    }
+
+    .modal-content .btn {
+        width: 100%;
+        padding: 12px;
+        background-color: #38a169;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: background-color 0.3s ease;
+    }
+
+    .modal-content .btn:hover {
+        background-color: #2f855a;
+    }
+
+    /* General responsive adjustments for the main layout if needed */
+    .projects-grid, .services-grid, .team-grid, .blog-grid, .stats-grid {
+        display: grid;
+        gap: 20px;
+    }
+    @media (min-width: 768px) {
+        .projects-grid {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+        .services-grid {
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+        .team-grid {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+        .blog-grid {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+        .stats-grid {
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        }
+    }
+    /* Ensure image cards in custom-gallery are responsive */
+    .custom-gallery .image-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Ensures images cover the area without distortion */
+    }
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo img {
+  height: 50px;
+}
+
+.logo-text h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.logo-text span {
+  color: #28a745; /* or your brand color */
+}
+  </style>
+ </head>
+ <body>
+  <!-- WhatsApp Button -->
+  <a class="whatsapp-btn" href="https://wa.me/917069785900" target="_blank">
+   <i class="fab fa-whatsapp">
+   </i>
+  </a>
+  
+  <!-- Header -->
+  <header>
+   <div class="container header-container">
+  <div class="logo" style="display: flex; align-items: center; gap: 10px;">
+    <a href="index.html">
+      <img src="images/Shreeja_LOGO.png" alt="Shreeja Biotech Logo" style="height: 50px;">
+    </a>
+    <div class="logo-text">
+      <h1 style="margin: 0;">
+        SHREEJA <span style="color: #28a745;">BIO-TECH</span>
+      </h1>
+    </div>
+  </div>
+    <div class="mobile-toggle" id="mobileToggle">
+     <i class="fas fa-bars">
+     </i>
+    </div>
+    <nav>
+     <ul>
+      <li>
+       <a href="#home">
+        Home
+       </a>
+      </li>
+      <li>
+       <a href="#about">
+        About
+       </a>
+      </li>
+      <li>
+       <a href="#process">
+        Process
+       </a>
+      </li>
+      <li>
+       <a href="#projects">
+        Projects
+       </a>
+      </li>
+      <li>
+       <a href="#services">
+        Services
+       </a>
+      </li>
+      <li>
+       <a href="#team">
+        Team
+       </a>
+      </li>
+      <li>
+       <a href="#blog">
+        Blog
+       </a>
+      </li>
+      <li>
+       <a href="#investors">
+        Investors
+       </a>
+      </li>
+      <li>
+       <a href="#contact">
+        Contact
+       </a>
+      </li>
+      <li>
+        <a class="btn" href="services/biogas_plant_calculator.html">
+            Project Calculator
+        </a>
+      </li>
+     </ul>
+    </nav>
+   </div>
+  </header>
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+   <div class="container">
+    <div class="hero-content">
+     <h1>
+      Powering Tomorrow, Naturally
+     </h1>
+     <p>
+      Shreeja Biotech is a pioneer in Bio-CNG production from organic waste, transforming environmental challenges into sustainable energy solutions for a greener future.
+     </p>
+     <div class="hero-btns">
+      <a class="btn" href="#services">
+       Our Services
+      </a>
+      <a class="btn btn-secondary" href="#contact">
+       Contact Us
+      </a>
+     </div>
+    </div>
+   </div>
+  </section>
+  <!-- About Section -->
+  <section class="about" id="about">
+   <div class="container">
+    <div class="section-title">
+     <h2>
+      About Shreeja Biotech
+     </h2>
+    </div>
+    <div class="about-content">
+     <div class="about-text animate">
+      <h2>
+       Leading the Renewable Energy Revolution
+      </h2>
+      <p>
+       Founded in Surat, Gujarat, Shreeja Biotech specializes in converting organic waste into clean, renewable Bio-CNG. With over a decade of experience, we've pioneered innovative technologies that transform agricultural, municipal, and industrial waste into valuable energy resources.
+      </p>
+      <p>
+       Our mission is to reduce India's carbon footprint while providing cost-effective energy solutions that benefit communities, industries, and the environment.
+      </p>
+      <div class="mission-vision">
+       <div class="mission animate delay-1">
+        <h3>
+         Our Mission
+        </h3>
+        <p>
+         "To develop, innovate, and implement world-class renewable energy solutions that transform organic waste into high-value, sustainable energy resources while promoting environmental responsibility."
+        </p>
+       </div>
+       <div class="vision animate delay-2">
+        <h3>
+         Our Vision
+        </h3>
+        <p>
+         "To establish Shreeja Bio-Tech as a global leader in Waste-to-Energy and Bio-CNG production, delivering cost-effective, sustainable, and high-performance solutions that contribute to a cleaner, greener future."
+        </p>
+       </div>
+      </div>
+     </div>
+     <div class="about-stats animate delay-3">
+      <canvas height="400" id="impactChart" width="400">
+      </canvas>
+     </div>
+    </div>
+   </div>
+  </section>
+ 
+ <!-- Process Section -->
+  <section class="process-section" id="process">
+   <div class="container">
+    <div class="section-title">
+     <h2>
+      Our Bio-CNG Production Process
+     </h2>
+    </div>
+    <div class="process-steps">
+     <div class="step animate">
+      <div class="step-number">
+       1
+      </div>
+      <div class="step-icon">
+       <i class="fas fa-trash-alt">
+       </i>
+      </div>
+      <h3>
+       Waste Collection
+      </h3>
+      <p>
+       Organic waste is sourced from agricultural, municipal, and industrial partners across Gujarat.
+      </p>
+     </div>
+     <div class="step animate delay-1">
+      <div class="step-number">
+       2
+      </div>
+      <div class="step-icon">
+       <i class="fas fa-blender">
+       </i>
+      </div>
+      <h3>
+       Pre-Treatment
+      </h3>
+      <p>
+       Waste undergoes segregation, shredding, and preparation for optimal digestion.
+      </p>
+     </div>
+     <div class="step animate delay-2">
+      <div class="step-number">
+       3
+      </div>
+      <div class="step-icon">
+       <i class="fas fa-flask">
+       </i>
+      </div>
+      <h3>
+       Anaerobic Digestion
+      </h3>
+      <p>
+       Microorganisms break down organic matter in oxygen-free digesters, producing biogas.
+      </p>
+     </div>
+     <div class="step animate delay-3">
+      <div class="step-number">
+       4
+      </div>
+      <div class="step-icon">
+       <i class="fas fa-filter">
+       </i>
+      </div>
+      <h3>
+       Biogas Purification
+      </h3>
+      <p>
+       Our hybrid systems remove impurities to achieve 98% methane purity for Bio-CNG.
+      </p>
+     </div>
+     <div class="step animate delay-4">
+      <div class="step-number">
+       5
+      </div>
+      <div class="step-icon">
+       <i class="fas fa-gas-pump">
+       </i>
+      </div>
+      <h3>
+       Compression &amp; Storage
+      </h3>
+      <p>
+       Purified gas is compressed to 250 bar and stored in specialized cylinders.
+      </p>
+     </div>
+     <div class="step animate delay-1">
+      <div class="step-number">
+       6
+      </div>
+      <div class="step-icon">
+       <i class="fas fa-truck">
+       </i>
+      </div>
+      <h3>
+       Distribution
+      </h3>
+      <p>
+       Bio-CNG is distributed to industrial clients, CNG stations, and commercial users.
+      </p>
+     </div>
+    </div>
+   </div>
+  </section>
+  <!-- Projects Section -->
+  <section class="projects" id="projects">
+   <div class="container">
+    <div class="section-title">
+     <h2>
+      Our Featured Projects
+     </h2>
+    </div>
+    <div class="projects-grid">
+     <div class="project-card animate">
+      <div class="project-img">
+       <!-- Added onerror for image fallback -->
+       <img alt="Project 01" src="images/digester_01.jpg" onerror="this.onerror=null;this.src='https://placehold.co/400x250/cccccc/333333?text=Image+Not+Found';"/>
+      </div>
+      <div class="project-info">
+       <h3>
+        Municipal Waste Project
+       </h3>
+       <p>
+        Converting 50 tons/day of municipal solid waste into Bio-CNG for city transport
+       </p>
+       <p>
+        <strong>
+         Capacity:
+        </strong>
+        1500 kg Bio-CNG/day
+       </p>
+       <p>
+        <strong>
+         Impact:
+        </strong>
+        Reduces 15,000 tons CO2/year
+       </p>
+      </div>
+     </div>
+     <div class="project-card animate delay-1">
+      <div class="project-img">
+       <!-- Added onerror for image fallback -->
+       <img alt="Project 02" src="images/digester02.jpg" onerror="this.onerror=null;this.src='https://placehold.co/400x250/cccccc/333333?text=Image+Not+Found';"/>
+      </div>
+      <div class="project-info">
+       <h3>
+        Agricultural Waste Plant
+       </h3>
+       <p>
+        Processing farm waste from 200+ farms into clean energy and organic fertilizer
+       </p>
+       <p>
+        <strong>
+         Capacity:
+        </strong>
+        100 tons/day agricultural waste
+       </p>
+       <p>
+        <strong>
+         Output:
+        </strong>
+        5,000 kg Bio-CNG + 10 tons fertilizer/day
+       </p>
+      </div>
+     </div>
+     <div class="project-card animate delay-2">
+      <div class="project-img">
+       <!-- Added onerror for image fallback -->
+       <img alt="Project 03" src="images/digester03.jpg" onerror="this.onerror=null;this.src='https://placehold.co/400x250/cccccc/333333?text=Image+Not+Found';"/>
+      </div>
+      <div class="project-info">
+       <h3>
+        Food Processing Unit
+       </h3>
+       <p>
+        Converting food industry waste into Bio-CNG for industrial heating applications
+       </p>
+       <p>
+        <strong>
+         Technology:
+        </strong>
+        Modified UASB digesters
+       </p>
+       <p>
+        <strong>
+         Efficiency:
+        </strong>
+        85% waste-to-energy conversion
+       </p>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section>
+  <!-- Services Section -->
+  <section class="services" id="services">
+   <div class="container">
+    <div class="section-title">
+     <h2>
+      Products &amp; Services
+     </h2>
+    </div>
+    <div class="services-grid">
+     <div class="service-card animate">
+      <div class="service-icon">
+       <i class="fas fa-gas-pump">
+       </i>
+      </div>
+      <h3>
+       Bio-CNG Production
+      </h3>
+      <p>
+       High-purity compressed biogas for industrial, commercial, and transportation use.
+      </p>
+      <a class="btn" href="services/bio-cng.html">
+       Learn More
+      </a>
+     </div>
+     <div class="service-card animate delay-1">
+      <div class="service-icon">
+       <i class="fas fa-seedling">
+       </i>
+      </div>
+      <h3>
+       Organic Fertilizers
+      </h3>
+      <p>
+       Nutrient-rich fertilizers from digested slurry, improving soil health and crop yields.
+      </p>
+      <a class="btn" href="services/fertilizers.html">
+       Learn More
+      </a>
+     </div>
+     <div class="service-card animate delay-2">
+      <div class="service-icon">
+       <i class="fas fa-hard-hat">
+       </i>
+      </div>
+      <h3>
+       Turnkey Plant Setup
+      </h3>
+      <p>
+       End-to-end solutions from feasibility studies to commissioning and maintenance.
+      </p>
+      <a class="btn" href="services/turnkey.html">
+       Learn More
+      </a>
+     </div>
+     <div class="service-card animate delay-3">
+      <div class="service-icon">
+       <i class="fas fa-cogs">
+       </i>
+      </div>
+      <h3>
+       Technology Consulting
+      </h3>
+      <p>
+       Expert guidance on biogas technology selection, optimization, and integration.
+      </p>
+      <a class="btn" href="services/consulting.html">
+       Learn More
+      </a>
+     </div>
+     <div class="service-card animate delay-1">
+      <div class="service-icon">
+       <i class="fas fa-chart-line">
+       </i>
+      </div>
+      <h3>
+       Carbon Credit Services
+      </h3>
+      <p>
+       Assistance in registering, monitoring, and trading carbon credits from biogas projects.
+      </p>
+      <a class="btn" href="services/carbon-credit.html">
+       Learn More
+      </a>
+     </div>
+     <div class="service-card animate delay-2">
+      <div class="service-icon">
+       <i class="fas fa-vial">
+       </i>
+      </div>
+      <h3>
+       Feedstock Analysis
+      </h3>
+      <p>
+       Comprehensive waste characterization to determine biogas potential and plant design.
+      </p>
+      <a class="btn" href="services/feedstock.html">
+       Learn More
+      </a>
+     </div>
+    </div>
+   </div>
+  </section>
+ <!-- Team Section -->
+<section class="team" id="team">
+  <div class="container">
+    <div class="section-title">
+      <h2>Our Leadership Team</h2>
+    </div>
+    <div class="team-grid">
+      <!-- Pankaj Khatri -->
+      <div class="team-member animate">
+        <div class="member-img">
+          <img alt="Pankaj Hemant Khatri" src="images/Pankaj_Khatri.jpg" onerror="this.onerror=null;this.src='https://placehold.co/300x300/cccccc/333333?text=Pankaj+Khatri';"/>
+        </div>
+        <div class="member-info">
+          <h4>Pankaj Hemant Khatri</h4>
+          <span class="position">Founder &amp; Partner</span>
+          <p class="member-email">pankaj_khatri@shreejabiotech.shop</p>
+          <p>Visionary leader with 15+ years in bio-energy technologies. Pioneer in India's bio-CNG movement.</p>
+        </div>
+      </div>
+
+      <!-- Pooja Khatri -->
+      <div class="team-member animate delay-1">
+        <div class="member-img">
+          <img alt="Pooja Pankaj Khatri" src="images/pooja_Khatri.jpg" onerror="this.onerror=null;this.src='https://placehold.co/300x300/cccccc/333333?text=Pooja+Khatri';"/>
+        </div>
+        <div class="member-info">
+          <h4>Pooja Pankaj Khatri</h4>
+          <span class="position">Partner &amp; Finance Manager</span>
+          <p class="member-email">pooja.khatri@shreejabiotech.shop</p>
+          <p>Seasoned finance professional with expertise in project finance and strategic planning.</p>
+        </div>
+      </div>
+
+      <!-- Hemant Khatri -->
+      <div class="team-member animate delay-2">
+        <div class="member-img">
+          <img alt="Hemant Khatri" src="images/hemantkhatri.jpg" onerror="this.onerror=null;this.src='https://placehold.co/300x300/cccccc/333333?text=Hemant+Khatri';"/>
+        </div>
+        <div class="member-info">
+          <h4>Mr. Hemant Khatri</h4>
+          <span class="position">Senior HR Manager</span>
+          <p class="member-email">hemant_khatri@shreejabiotech.shop</p>
+          <p>With 25+ years of experience in human resource development, Hemant brings deep operational insight and team-building expertise to Shreeja Biotech.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials">
+   <div class="container">
+    <div class="section-title">
+     <h2>
+      What Our Clients Say
+     </h2>
+    </div>
+    <div class="testimonial-container">
+     <div class="testimonial active">
+      <p>
+       "Shreeja Biotech's Bio-CNG plant has transformed our waste management while providing clean energy for our operations. Their technical expertise and commitment to sustainability are unmatched."
+      </p>
+      <div class="client">
+       - Rajesh Mehta, Director, Green Agro Industries
+      </div>
+     </div>
+     <div class="testimonial">
+      <p>
+       "The plant commissioned by Shreeja Biotech has exceeded our expectations in both performance and environmental impact. Their team provided excellent support throughout the project."
+      </p>
+      <div class="client">
+       - Dr. Priya Sharma, Waste to Energy Research Engineer
+      </div>
+     </div>
+     <div class="testimonial">
+      <p>
+       "As an investor, I've been impressed with Shreeja's innovative approach and strong financial management. Their projects deliver both environmental impact and solid returns."
+      </p>
+      <div class="client">
+       - Vikram Patel, Clean Energy Investor
+      </div>
+     </div>
+	<div class="testimonial">
+      <p>
+       "The End to End Guidence with all kind of support with Technology is Amazing by the Team of Shreeja BioTech"
+      </p>
+      <div class="client">
+       - Mr. Manoj Yadav, Ex. Minister
+      </div>
+     </div>
+     <div class="testimonial-nav">
+  <div class="nav-dot active" data-index="0"></div>
+  <div class="nav-dot" data-index="1"></div>
+  <div class="nav-dot" data-index="2"></div>
+  <div class="nav-dot" data-index="3"></div> <!-- ✅ New dot added -->
+</div>
+     </div>
+    </div>
+   </div>
+  </section>
+  <!-- Stats Section -->
+  <section class="stats">
+   <div class="container">
+    <div class="stats-grid">
+     <div class="stat-item animate">
+      <h3>
+       15+
+      </h3>
+      <p>
+       Years of Experience
+      </p>
+     </div>
+     <div class="stat-item animate delay-1">
+      <h3>
+       50+
+      </h3>
+      <p>
+       Projects Completed
+      </p>
+     </div>
+     <div class="stat-item animate delay-2">
+      <h3>
+       98%
+      </h3>
+      <p>
+       Methane Purity
+      </p>
+     </div>
+     <div class="stat-item animate delay-3">
+      <h3>
+       16.50 Cr
+      </h3>
+      <p>
+       Largest Project
+      </p>
+     </div>
+     <div class="stat-item animate delay-1">
+      <h3>
+       120K+
+      </h3>
+      <p>
+       Tons Waste Processed
+      </p>
+     </div>
+     <div class="stat-item animate delay-2">
+      <h3>
+       25K+
+      </h3>
+      <p>
+       Tons CO2 Reduced
+      </p>
+     </div>
+    </div>
+   </div>
+  </section>
+  <!-- Blog Section -->
+  <section class="blog" id="blog">
+   <div class="container">
+    <div class="section-title">
+     <h2>
+      Latest News &amp; Insights
+     </h2>
+    </div>
+    <div class="blog-grid">
+     <div class="blog-card animate">
+      <div class="blog-img">
+       <!-- Added onerror for image fallback -->
+       <img alt="blog01" src="images/biogas_plant.jpg" onerror="this.onerror=null;this.src='https://placehold.co/400x250/cccccc/333333?text=Blog+Image+1';"/>
+      </div>
+      <div class="blog-content">
+       <span class="blog-date">
+        June 15, 2024
+       </span>
+       <h3>
+        New MNRE Subsidies for Bio-CNG Projects
+       </h3>
+       <p>
+        Government announces 40% capital subsidy for new biogas plants under the National Bioenergy Programme.
+       </p>
+       <a class="btn" href="#">
+        Read More
+       </a>
+      </div>
+     </div>
+     <div class="blog-card animate delay-1">
+      <div class="blog-img">
+       <!-- Added onerror for image fallback -->
+       <img alt="blog02" src="images/animal_house.jpg" onerror="this.onerror=null;this.src='https://placehold.co/400x250/cccccc/333333?text=Blog+Image+2';"/>
+      </div>
+      <div class="blog-content">
+       <span class="blog-date">
+        May 28, 2024
+       </span>
+       <h3>
+        How Bio-CNG is Transforming Agriculture in Gujarat
+       </h3>
+       <p>
+        Case study on how our Anand plant is providing energy security to local farming communities.
+       </p>
+       <a class="btn" href="#">
+        Read More
+       </a>
+      </div>
+     </div>
+     <div class="blog-card animate delay-2">
+      <div class="blog-img">
+       <!-- Added onerror for image fallback -->
+       <img alt="blog02" src="images/productionline.jpg" onerror="this.onerror=null;this.src='https://placehold.co/400x250/cccccc/333333?text=Blog+Image+3';"/>
+      </div>
+      <div class="blog-content">
+       <span class="blog-date">
+        April 12, 2024
+       </span>
+       <h3>
+        Innovations in Biogas Purification Technology
+       </h3>
+       <p>
+        Exploring our patent-pending semi-cryogenic system that achieves 98% methane purity.
+       </p>
+       <a class="btn" href="#">
+        Read More
+       </a>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section>
+  <!-- Investor Section -->
+  <section class="investors" id="investors">
+   <div class="container">
+    <div class="section-title">
+     <h2>
+      Investor Relations
+     </h2>
+    </div>
+    <div class="investor-content">
+     <div class="investor-text animate">
+      <h3>
+       Partner with Us in Building a Sustainable Future
+      </h3>
+      <p>
+       Shreeja Biotech offers compelling investment opportunities in India's rapidly growing renewable energy sector. Our projects deliver both environmental impact and attractive financial returns.
+      </p>
+      <h4>
+       Investment Highlights:
+      </h4>
+      <ul>
+       <li>
+        Proven technology with 15+ years of operational experience
+       </li>
+       <li>
+        Favorable regulatory environment with government subsidies
+       </li>
+       <li>
+        Strong revenue streams from Bio-CNG sales and carbon credits
+       </li>
+       <li>
+        Scalable business model with multiple expansion projects
+       </li>
+       <li>
+        Experienced management team with technical and financial expertise
+       </li>
+      </ul>
+     <a class="btn download-btn" href="documents/company_profile.pdf" download>
+  <i class="fas fa-download"></i>
+  Download Investor Deck
+</a>
+     </div>
+     <div class="investor-chart animate delay-1">
+      <canvas height="400" id="investmentChart" width="400">
+      </canvas>
+     </div>
+    </div>
+   </div>
+  </section>
+  <!-- Google Form Modal -->
+  <div class="modal" id="investorFormModal">
+   <div class="modal-content">
+    <span class="close" onclick="document.getElementById('investorFormModal').style.display='none'">
+     ×
+    </span>
+    <h2>
+     Request Investor Deck
+    </h2>
+    <p>
+     Please fill out the form below. You will receive access to the Investor Deck after submission.
+    </p>
+    <form action="https://formsubmit.co/info@shreejabiotech.shop" method="POST">
+     <input name="_subject" type="hidden" value="Investor Deck Request"/>
+     <input name="name" placeholder="Your Name" required="" type="text"/>
+     <input name="email" placeholder="Your Email" required="" type="email"/>
+     <textarea name="message" placeholder="Tell us why you're interested" required=""></textarea>
+     <button class="btn" type="submit">
+      Submit &amp; Download
+     </button>
+    </form>
+   </div>
+  </div>
+  <!-- Contact Section -->
+  <section class="contact" id="contact">
+   <div class="container">
+    <div class="section-title">
+     <h2>
+      Contact Us
+     </h2>
+    </div>
+    <div class="contact-container">
+     <div class="contact-info">
+      <div class="contact-item animate">
+       <div class="contact-icon">
+        <i class="fas fa-map-marker-alt">
+        </i>
+       </div>
+       <div>
+        <h3>
+         Our Location
+        </h3>
+        <p>
+         372, V Square, Palanpur jakatnaka, Surat - 395 005, Gujarat, India
+        </p>
+       </div>
+      </div>
+      <div class="contact-item animate delay-1">
+       <div class="contact-icon">
+        <i class="fas fa-phone-alt">
+        </i>
+       </div>
+       <div>
+        <h3>
+         Phone Number
+        </h3>
+        <p>
+         +91 70697 85900
+        </p>
+       </div>
+      </div>
+      <div class="contact-item animate delay-2">
+       <div class="contact-icon">
+        <i class="fas fa-envelope">
+        </i>
+       </div>
+       <div>
+        <h3>
+         Email Address
+        </h3>
+        <p>
+         info@shreejabiotech.shop
+        </p>
+               </div>
+      </div>
+      <div class="contact-item animate delay-3">
+       <div class="contact-icon">
+        <i class="fas fa-building">
+        </i>
+       </div>
+       <div>
+        <h3>
+         Business Hours
+        </h3>
+        <p>
+         Monday - Saturday: 9:00 AM - 6:00 PM
+        </p>
+        <p>
+         Sunday: Closed
+        </p>
+       </div>
+      </div>
+     </div>
+     <div class="contact-form animate delay-1">
+      <form action="https://formsubmit.co/info@shreejabiotech.shop" method="POST">
+       <input name="_subject" type="hidden" value="New Inquiry from Main Contact Form"/>
+       <input name="_captcha" type="hidden" value="false"/>
+       <div class="form-group">
+        <input name="name" placeholder="Your Name" required="" type="text"/>
+       </div>
+       <div class="form-group">
+        <input name="email" placeholder="Your Email" required="" type="email"/>
+       </div>
+       <div class="form-group">
+        <input name="phone" placeholder="Your Phone" type="tel"/>
+       </div>
+       <div class="form-group">
+        <select name="interest" required="">
+         <option value="">
+          Select Interest
+         </option>
+         <option value="Bio-CNG">
+          Bio-CNG
+         </option>
+         <option value="Fertilizers">
+          Organic Fertilizers
+         </option>
+         <option value="Turnkey">
+          Turnkey Setup
+         </option>
+         <option value="Consulting">
+          Consulting
+         </option>
+         <option value="Carbon Credit">
+          Carbon Credit
+         </option>
+         <option value="Feedstock Analysis">
+          Feedstock Analysis
+         </option>
+         <option value="Other">
+          Other
+         </option>
+        </select>
+       </div>
+       <div class="form-group">
+        <textarea name="message" placeholder="Your Message" required=""></textarea>
+       </div>
+       <button class="btn" type="submit">
+        Send Message
+       </button>
+      </form>
+     </div>
+    </div>
+   <div class="map-container" style="position: relative; width: 100%; padding-bottom: 56.25%; /* 16:9 ratio */ height: 0; overflow: hidden; border-radius: 10px;">
+  <iframe 
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3719.528370703524!2d72.78014167508611!3d21.21088658048438!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be04db1c12da7bb%3A0x64f5c7f39a833498!2sV%20Square!5e0!3m2!1sen!2sin!4v1751872099581!5m2!1sen!2sin" 
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" 
+    allowfullscreen="" 
+    loading="lazy" 
+    referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+</div>
+
+   </div>
+  </section>
+  <!-- Footer -->
+  <footer>
+   <div class="container">
+    <div class="footer-container">
+     <div class="footer-links">
+      <div class="footer-logo">
+       <h3>
+        SHREEJA
+        <span>
+         BIO-TECH
+        </span>
+       </h3>
+       <p>
+        Powering Tomorrow, Naturally
+       </p>
+       <div class="social-links">
+        <a href="#">
+         <i class="fab fa-facebook-f">
+         </i>
+        </a>
+        <a href="#">
+         <i class="fab fa-twitter">
+         </i>
+        </a>
+        <a href="#">
+         <i class="fab fa-linkedin-in">
+         </i>
+        </a>
+        <a href="#">
+         <i class="fab fa-instagram">
+         </i>
+        </a>
+        <a href="#">
+         <i class="fab fa-youtube">
+         </i>
+        </a>
+       </div>
+      </div>
+     </div>
+     <div class="footer-links">
+      <h4>
+       Quick Links
+      </h4>
+      <ul>
+       <li>
+        <a href="#home">
+         Home
+        </a>
+       </li>
+       <li>
+        <a href="#about">
+         About Us
+        </a>
+       </li>
+       <li>
+        <a href="#process">
+         Our Process
+        </a>
+       </li>
+       <li>
+        <a href="#projects">
+         Projects
+        </a>
+       </li>
+       <li>
+        <a href="#services">
+         Services
+        </a>
+       </li>
+       <li>
+        <a href="#contact">
+         Contact
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="footer-links">
+      <h4>
+       Our Services
+      </h4>
+      <ul>
+       <li>
+        <a href="services/bio-cng.html">
+         Bio-CNG Production
+        </a>
+       </li>
+       <li>
+        <a href="services/fertilizers.html">
+         Organic Fertilizers
+        </a>
+       </li>
+       <li>
+        <a href="#">
+         Plant Setup
+        </a>
+       </li>
+       <li>
+        <a href="#">
+         Consulting Services
+        </a>
+       </li>
+       <li>
+        <a href="services/carbon-credit.html">
+         Carbon Credit Services
+        </a>
+       </li>
+       <li>
+        <a href="services/feedstock.html">
+         Feedstock Analysis
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="footer-links">
+      <h4>
+       Contact Info
+      </h4>
+      <ul>
+       <li>
+        <i class="fas fa-map-marker-alt">
+        </i>
+        372, V Square, Surat - 395005
+       </li>
+       <li>
+        <i class="fas fa-phone">
+        </i>
+        +91 70697 85900
+       </li>
+       <li>
+        <i class="fas fa-envelope">
+        </i>
+        info@shreejabiotech.shop
+       </li>
+       <li>
+        <i class="fas fa-clock">
+        </i>
+        Mon-Sat: 9:00 AM - 6:00 PM
+       </li>
+      </ul>
+     </div>
+    </div>
+    <div class="copyright">
+     <p>
+      © 2025 Shreeja Biotech. All Rights Reserved. | GST No.: 24AFNFS8878N1ZS
+     </p>
+    </div>
+   </div>
+  </footer>
+  <script>
+   // Mobile Navigation Toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navMenu = document.querySelector('nav ul');
+        
+        mobileToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            // Toggle between fa-bars and fa-times icons
+            const icon = mobileToggle.querySelector('i');
+            if (icon.classList.contains('fa-bars')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        // Close mobile menu when a link is clicked (for smoother UX)
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                    mobileToggle.querySelector('i').classList.remove('fa-times');
+                    mobileToggle.querySelector('i').classList.add('fa-bars');
+                }
+            });
+        });
+
+        // Login Panel Toggle (Removed as no login panel found in HTML, keeping for reference if needed later)
+        // const loginLink = document.getElementById('loginLink');
+        // const loginPanel = document.getElementById('loginPanel');
+        // const loginOverlay = document.getElementById('loginOverlay');
+        // const closeLogin = document.getElementById('closeLogin');
+        
+        // if (loginLink && loginPanel && loginOverlay && closeLogin) {
+        //     loginLink.addEventListener('click', (e) => {
+        //         e.preventDefault();
+        //         loginPanel.classList.add('active');
+        //         loginOverlay.classList.add('active');
+        //         document.body.style.overflow = 'hidden';
+        //     });
+            
+        //     closeLogin.addEventListener('click', () => {
+        //         loginPanel.classList.remove('active');
+        //         loginOverlay.classList.remove('active');
+        //         document.body.style.overflow = 'auto';
+        //     });
+            
+        //     loginOverlay.addEventListener('click', () => {
+        //         loginPanel.classList.remove('active');
+        //         loginOverlay.classList.remove('active');
+        //         document.body.style.overflow = 'auto';
+        //     });
+        // }
+        
+        // Testimonial Slider
+        const testimonials = document.querySelectorAll('.testimonial');
+        const dots = document.querySelectorAll('.nav-dot');
+        let currentTestimonial = 0;
+        
+        function showTestimonial(index) {
+            testimonials.forEach(testimonial => testimonial.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            if (testimonials[index]) { // Ensure testimonial exists before adding class
+                testimonials[index].classList.add('active');
+            }
+            if (dots[index]) { // Ensure dot exists before adding class
+                dots[index].classList.add('active');
+            }
+            currentTestimonial = index;
+        }
+        
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                showTestimonial(index);
+            });
+        });
+        
+        // Auto-rotate testimonials
+        if (testimonials.length > 0) { // Only auto-rotate if there are testimonials
+            setInterval(() => {
+                currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+                showTestimonial(currentTestimonial);
+            }, 5000);
+        }
+        
+        // Animation on scroll
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.animate');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (elementPosition < screenPosition) {
+                    element.classList.add('active');
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+        
+        // Initialize Charts
+        document.addEventListener('DOMContentLoaded', function() {
+            // Environmental Impact Chart
+            const impactCtx = document.getElementById('impactChart');
+            if (impactCtx) { // Check if canvas element exists
+                const impactChart = new Chart(impactCtx.getContext('2d'), {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['CO2 Reduction', 'Waste Processed', 'Energy Produced', 'Fertilizer Created'],
+                        datasets: [{
+                            data: [35, 25, 25, 15],
+                            backgroundColor: [
+                                '#1a5d1a',
+                                '#0d47a1',
+                                '#ff9800',
+                                '#4caf50'
+                            ],
+                            borderWidth: 0
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: {
+                                    padding: 20,
+                                    font: {
+                                        size: 12
+                                    }
+                                }
+                            },
+                            title: {
+                                display: true,
+                                text: 'Environmental Impact',
+                                font: {
+                                    size: 16,
+                                    weight: 'bold'
+                                },
+                                padding: 20
+                            }
+                        }
+                    }
+                });
+            }
+            
+            // Investment Chart
+            const investmentCtx = document.getElementById('investmentChart');
+            if (investmentCtx) { // Check if canvas element exists
+                const investmentChart = new Chart(investmentCtx.getContext('2d'), {
+                    type: 'bar',
+                    data: {
+                        labels: ['2020', '2021', '2022', '2023', '2024'],
+                        datasets: [{
+                            label: 'Revenue (₹ Crore)',
+                            data: [8.2, 12.5, 18.3, 24.7, 32.1],
+                            backgroundColor: '#1a5d1a',
+                            borderWidth: 0,
+                            borderRadius: 5
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: 'Revenue (₹ Crore)'
+                                }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            title: {
+                                display: true,
+                                text: 'Revenue Growth',
+                                font: {
+                                    size: 16,
+                                    weight: 'bold'
+                                },
+                                padding: 20
+                            }
+                        }
+                    }
+                });
+            }
+        });
+  </script>
+  
+  
+  <!-- Inquire Now Modal Trigger Button -->
+  <button class="btn" onclick="document.getElementById('inquiryModal').style.display='block'">
+   Inquire Now
+  </button>
+  <div class="modal" id="inquiryModal">
+   <div class="modal-content">
+    <span class="close" onclick="document.getElementById('inquiryModal').style.display='none'">
+     ×
+    </span>
+    <h2>
+     Send Your Inquiry
+    </h2>
+    <form action="https://formsubmit.co/info@shreejabiotech.shop" method="POST">
+     <input name="_subject" type="hidden" value="Inquiry from Website Modal"/>
+     <input name="_captcha" type="hidden" value="false"/>
+     <div class="form-group">
+      <input name="name" placeholder="Your Name" required="" type="text"/>
+     </div>
+     <div class="form-group">
+      <input name="email" placeholder="Your Email" required="" type="email"/>
+     </div>
+     <div class="form-group">
+      <input name="phone" placeholder="Your Phone Number" type="text"/>
+     </div>
+     <div class="form-group">
+      <textarea name="message" placeholder="Your Message" required=""></textarea>
+     </div>
+     <button class="btn" type="submit">
+      Send Inquiry
+     </button>
+    </form>
+   </div>
+  </div>
+  <script>
+   // This script block was at the very end, moved it up to consolidate all main JS
+   // and ensure it runs after elements are defined.
+   window.onclick = function(event) {
+    var modal = document.getElementById('inquiryModal');
+    if (modal && event.target == modal) { // Added check for modal existence
+      modal.style.display = "none";
+    }
+  }
+  </script>
+ </body>
+</html>
